@@ -1,3 +1,11 @@
+/* Fonts */
+@font-face {
+  font-family: Bahnschrift;
+  font-style: normal;
+  src: url(/fonts/bahnschrift.ttf) format("truetype");
+}
+
+/* Global Styles */
 * {
   box-sizing: border-box;
 }

@@ -7,3 +7,8 @@ nav > ul > li {
   padding: 1rem;
   float: left;
 }
+.nav-links {
+  color: #ddd;
+  font-family: Bahnschrift;
+  text-decoration: none; 
+}
