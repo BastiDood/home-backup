@@ -5,6 +5,11 @@
   src: url(/fonts/bahnschrift.ttf) format("truetype");
 }
 
+/* Global Variables */
+:root {
+ --transition-time: 150ms; 
+}
+
 /* Global Styles */
 * {
   box-sizing: border-box;
@@ -14,7 +19,4 @@
   padding: 0;
   cursor: default;
   background-color: #282d32;
-}
-a {
-  cursor: pointer;
 }
