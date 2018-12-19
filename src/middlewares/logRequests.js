@@ -7,8 +7,10 @@
  * @param {Function} next -  The next middleware function to be called by Express.
  */
 function logRequests(req, res, next) {
-  console.log(`Request from: ${req.ip}`);
+  console.group(`${new Date()}`);
+  console.log(`From IP: ${req.ip}`);
   console.log(`Accessing: ${req.url}`);
+  console.groupEnd();
   next();
 }
 
