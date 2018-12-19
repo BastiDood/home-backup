@@ -11,7 +11,7 @@ nav > ul {
   border-left: solid #222 0.5rem;
   padding: 1rem;
   cursor: pointer;
-  font-family: Bahnschrift;
+  font-family: 'Fira Sans';
   transition: border-left var(--transition-time) linear;
 }
 .nav-links:hover {
