@@ -2,6 +2,10 @@
   "name": "home-backup",
   "version": "0.1.0",
   "description": "This is an app that allows computers within the same local network to upload files to a central computer, thus allowing files to be backed up.",
+  "homepage": "https://github.com/Some-Dood/home-backup#readme",
+  "bugs": {
+    "url": "https://github.com/Some-Dood/home-backup/issues"
+  },
   "main": "src/index.js",
   "scripts": {
     "start": "node .",
@@ -9,6 +13,10 @@
   },
   "author": "Basti Ortiz <ortizbasti16@gmail.com>",
   "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Some-Dood/home-backup.git"
+  },
   "dependencies": {
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
