@@ -12,6 +12,7 @@ nav > ul {
   padding: 1rem;
   cursor: pointer;
   font-family: 'Fira Sans';
+  font-size: 1.1rem;
   transition: border-left var(--transition-time) linear;
 }
 .nav-links:hover {
