@@ -4,7 +4,10 @@
 const express = require('express');
 const helmet = require('helmet');
 
-// USER IMPORTS
+// MIDDLEWARES
+const logRequests = require('./middlewares/logRequests');
+
+// UTILITY FUNCTIONS
 const getServerDetails = require('./util/getServerDetails');
 
 // Global constants
@@ -14,11 +17,7 @@ const { HOSTNAME, PORT } = getServerDetails();
 const app = express();
 
 // Log each request
-app.use('*', (req, res, next) => {
-  console.log(`Request from: ${req.ip}`);
-  console.log(`Accessing: ${req.url}`);
-  next();
-});
+app.use('*', logRequests);
 
 // Enable security headers by Helmet
 app.use(helmet());
