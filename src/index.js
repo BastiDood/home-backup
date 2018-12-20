@@ -27,5 +27,12 @@ app.use(express.static('public', {
   dotfiles: 'deny'
 }));
 
+// File not found
+app.use((req, res) => {
+  res.status(404);
+  res.write('404 Not Found');
+  res.end();
+});
+
 app.listen(PORT, HOSTNAME);
 console.log(`Running server at: http://${HOSTNAME}:${PORT}`);
