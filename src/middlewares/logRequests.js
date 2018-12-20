@@ -9,7 +9,7 @@
 function logRequests(req, res, next) {
   console.group(`${new Date()}`);
   console.log(`From IP: ${req.ip}`);
-  console.log(`Accessing: ${req.url}`);
+  console.log(`Request: ${req.method} ${req.url}`);
   console.groupEnd();
   next();
 }
