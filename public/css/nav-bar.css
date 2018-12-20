@@ -3,24 +3,24 @@ nav > ul {
   margin: 0;
   padding: 0;
   width: 100%;
-  background-color: #222;
+  background-color: var(--nav-bg-color);
   list-style-type: none;
 }
 .nav-links {
   display: block;
   padding: 1rem 1rem 1rem 1.5rem;
-  box-shadow: inset 0 0 #222;
+  box-shadow: inset 0 0 var(--nav-bg-color);
   cursor: pointer;
   font-family: 'Fira Sans';
   font-size: 1.1rem;
   transition: box-shadow var(--transition-time) linear;
 }
 .nav-links:hover {
-  box-shadow: inset 0.5rem 0 #236ea5;
-  background-color: #181818;
+  box-shadow: inset 0.5rem 0 var(--main-theme-color);
+  background-color: var(--nav-bg-color-hover);
 }
 .nav-links:hover > a {
-  color: #236ea5;
+  color: var(--main-theme-color);
 }
 .nav-links > a {
   color: #ddd;

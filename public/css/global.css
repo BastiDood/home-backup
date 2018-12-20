@@ -14,16 +14,20 @@
 
 /* Global Variables */
 :root {
- --transition-time: 150ms;
+  --main-theme-color: #236ea5;
+  --main-bg-color: #282d32;
+  --nav-bg-color: #222;
+  --nav-bg-color-hover: #181818;
+  --transition-time: 150ms;
 }
 
 /* Global Styles */
-/* * {
+* {
   box-sizing: border-box;
-} */
+}
 :root, body {
   margin: 0;
   padding: 0;
   cursor: default;
-  background-color: #282d32;
+  background-color: var(--main-bg-color);
 }
