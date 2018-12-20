@@ -1,5 +1,5 @@
 nav > ul {
-  display: inline-block;
+  display: flex;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -7,16 +7,17 @@ nav > ul {
   list-style-type: none;
 }
 .nav-links {
-  display: inline-block;
-  border-left: solid #222 0.5rem;
-  padding: 1rem;
+  display: block;
+  padding: 1rem 1rem 1rem 1.5rem;
+  box-shadow: inset 0 0 #222;
   cursor: pointer;
   font-family: 'Fira Sans';
   font-size: 1.1rem;
-  transition: border-left var(--transition-time) linear;
+  transition: box-shadow var(--transition-time) linear;
 }
 .nav-links:hover {
-  border-left: solid #236ea5 0.5rem;
+  box-shadow: inset 0.5rem 0 #236ea5;
+  background-color: #181818;
 }
 .nav-links:hover > a {
   color: #236ea5;
