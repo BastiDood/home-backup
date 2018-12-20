@@ -1,8 +1,15 @@
 /* Fonts */
 @font-face {
+  /* Use for headers and other important text */
   font-family: 'Fira Sans';
   font-style: normal;
   src: url(/fonts/FiraSans-Regular.ttf) format('truetype');
+}
+@font-face {
+  /* Use for general-purpose text */
+  font-family: Roboto;
+  font-style: normal;
+  src: url(/fonts/Roboto-Regular.ttf) format('truetype');
 }
 
 /* Global Variables */
