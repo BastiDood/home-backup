@@ -21,6 +21,17 @@ app.use('*', logRequests);
 
 // Enable security headers by Helmet
 app.use(helmet());
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    formAction: ['\'self\''],
+    defaultSrc: ['\'self\''],
+    frameAncestors: ['\'none\'']
+  }
+}));
+app.use(helmet.referrerPolicy({
+  policy: 'no-referrer'
+}));
 
 // Load static assets
 app.use(express.static('public', {
