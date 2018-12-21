@@ -17,7 +17,7 @@ const { HOSTNAME, PORT } = getServerDetails();
 const app = express();
 
 // Log each request
-app.use('*', logRequests);
+app.use(logRequests);
 
 // Enable security headers by Helmet
 app.use(helmet());
