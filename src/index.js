@@ -29,6 +29,7 @@ app.use(helmet.contentSecurityPolicy({
     frameAncestors: ['\'none\'']
   }
 }));
+app.use(helmet.noCache());
 app.use(helmet.referrerPolicy({
   policy: 'no-referrer'
 }));
