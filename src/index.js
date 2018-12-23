@@ -4,6 +4,9 @@
 const express = require('express');
 const helmet = require('helmet');
 
+// NATIVE IMPORTS
+const path = require('path');
+
 // MIDDLEWARES
 const logRequests = require('./middlewares/logRequests');
 
@@ -15,6 +18,10 @@ const { HOSTNAME, PORT } = getServerDetails();
 
 // Express app instance
 const app = express();
+
+// Use EJS as temple rendering engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/views'));
 
 // Log each request
 app.use(logRequests);
@@ -38,6 +45,11 @@ app.use(helmet.referrerPolicy({
 app.use(express.static('public', {
   dotfiles: 'deny'
 }));
+
+// Serve home page
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
 // File not found
 app.use((req, res) => {
