@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Error <%= errCode %>: <%= errMessage %></title>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Basti Ortiz" />
+    <meta name="theme-color" content="#236ea5" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/nav-bar.css" />
+    <link rel="stylesheet" href="/css/error.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li class="nav-links">
+          <a href="/" rel="noopener noreferrer">
+            Home
+          </a>
+        </li>
+        <li class="nav-links">
+          <a href="https://github.com/Some-Dood/home-backup" target="_blank" rel="noopener noreferrer">
+            Source Code on GitHub
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Error Message -->
+    <div class="error">
+      <div>
+        <h1><%= errCode %></h1>
+        <p><%= errMessage %></p>
+      </div>
+    </div>
+  </body>
+</html>

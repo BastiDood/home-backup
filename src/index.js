@@ -54,8 +54,11 @@ app.get('/', (req, res) => {
 // File not found
 app.use((req, res) => {
   res.status(404);
-  res.write('404 Not Found');
-  res.end();
+  res.statusMessage = 'Not Found';
+  res.render('error', {
+    errCode: res.statusCode,
+    errMessage: res.statusMessage
+  });
 });
 
 app.listen(PORT, HOSTNAME);
