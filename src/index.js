@@ -7,9 +7,6 @@ const helmet = require('helmet');
 // NATIVE IMPORTS
 const path = require('path');
 
-// MIDDLEWARES
-const logRequests = require('./middlewares/logRequests');
-
 // UTILITY FUNCTIONS
 const getServerDetails = require('./util/getServerDetails');
 
@@ -24,7 +21,13 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
 // Log each request
-app.use(logRequests);
+app.use((req, res, next) => {
+  console.group(`${new Date()}`);
+  console.log(`From IP: ${req.ip}`);
+  console.log(`Request: ${req.method} ${req.url}`);
+  console.groupEnd();
+  next();
+});
 
 // Enable security headers by Helmet
 app.use(helmet());
