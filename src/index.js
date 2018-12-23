@@ -56,9 +56,8 @@ app.get('/', (req, res) => {
 
 // File not found
 app.use((req, res) => {
-  res.status(404);
   res.statusMessage = 'Not Found';
-  res.render('error', {
+  res.status(404).render('error', {
     errCode: res.statusCode,
     errMessage: res.statusMessage
   });
