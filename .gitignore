@@ -63,5 +63,7 @@ out/
 # dotenv environment variables file
 .env
 
+# Uploads directory of app
+public/uploads/
 
 # End of https://www.gitignore.io/api/node

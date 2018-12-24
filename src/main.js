@@ -8,6 +8,9 @@ const helmet = require('helmet');
 // NATIVE IMPORTS
 const path = require('path');
 
+// ROUTERS
+const apiRouter = require('./routes/apiRouter');
+
 // UTILITY FUNCTIONS
 const getServerDetails = require('./util/getServerDetails');
 
@@ -55,6 +58,9 @@ app.use(express.static('public', {
 app.get('/', (req, res) => {
   res.render('index');
 });
+
+// Serve API
+app.use('/api', apiRouter);
 
 // File not found
 app.use((req, res) => {
