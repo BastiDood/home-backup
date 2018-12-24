@@ -8,7 +8,7 @@ const path = require('path');
 function getDirectoryContents() {
   return new Promise((resolve, reject) => {
     fs.readdir(
-      path.join(__dirname, '../../../public/uploads'),
+      path.join(__dirname, '../../public/uploads'),
       (err, files) => {
         if (err) reject(err);
         resolve(files);

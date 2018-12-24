@@ -9,6 +9,7 @@ const helmet = require('helmet');
 const path = require('path');
 
 // UTILITY FUNCTIONS
+const getUploadsDirectory = require('./util/getUploadsDirectory');
 const getServerDetails = require('./util/getServerDetails');
 
 // Global constants
