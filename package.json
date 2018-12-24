@@ -6,7 +6,7 @@
   "bugs": {
     "url": "https://github.com/Some-Dood/home-backup/issues"
   },
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "node .",
     "test": "jest"
