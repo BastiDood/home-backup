@@ -8,8 +8,10 @@ const helmet = require('helmet');
 // NATIVE IMPORTS
 const path = require('path');
 
+// ROUTES
+const fileHandler = require('./routes/fileHandler');
+
 // UTILITY FUNCTIONS
-const getUploadsDirectory = require('./util/getUploadsDirectory');
 const getServerDetails = require('./util/getServerDetails');
 
 // Global constants
@@ -56,6 +58,9 @@ app.use(express.static('public', {
 app.get('/', (req, res) => {
   res.render('index');
 });
+
+// Serve file system
+app.get('/files', fileHandler);
 
 // File not found
 app.use((req, res) => {
