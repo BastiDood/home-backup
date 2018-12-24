@@ -1,4 +1,4 @@
-nav > ul {
+nav {
   display: flex;
   margin: 0;
   padding: 0;
@@ -6,23 +6,19 @@ nav > ul {
   background-color: var(--nav-bg-color);
   list-style-type: none;
 }
-.nav-links {
+nav > a {
   display: block;
   padding: 1rem 1rem 1rem 1.5rem;
   box-shadow: inset 0 0 var(--nav-bg-color);
   cursor: pointer;
   font-family: 'Fira Sans';
   font-size: 1.1rem;
-  transition: box-shadow var(--transition-time) linear;
-}
-.nav-links:hover {
-  box-shadow: inset 0.5rem 0 var(--main-theme-color);
-  background-color: var(--nav-bg-color-hover);
-}
-.nav-links:hover > a {
-  color: var(--main-theme-color);
-}
-.nav-links > a {
   color: #ddd;
   text-decoration: none; 
+  transition: box-shadow var(--transition-time) linear;
+}
+nav > a:hover {
+  box-shadow: inset 0.5rem 0 var(--main-theme-color);
+  background-color: var(--nav-bg-color-hover);
+  color: var(--main-theme-color);
 }

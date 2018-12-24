@@ -60,7 +60,7 @@ app.get('/', (req, res) => {
 });
 
 // Serve file system
-app.get('/files', fileHandler);
+app.use('/files', fileHandler);
 
 // File not found
 app.use((req, res) => {
