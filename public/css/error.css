@@ -1,9 +1,9 @@
-.error div {
+.error > div {
   font-family: Roboto;
   font-size: 4rem;
   color: #ddd;
   text-align: center;
 }
-.error div h1 {
+.error > div > h1 {
   margin: 0;
 }
