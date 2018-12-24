@@ -24,6 +24,7 @@ app.set('views', path.join(__dirname, '/views'));
 // Log each request
 app.use((req, res, next) => {
   console.group(`${new Date()}`);
+  console.log(`User-agent: ${req.headers['user-agent']}`);
   console.log(`From IP: ${req.ip}`);
   console.log(`Request: ${req.method} ${req.url}`);
   console.groupEnd();
