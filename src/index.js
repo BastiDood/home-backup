@@ -63,5 +63,16 @@ app.use((req, res) => {
   });
 });
 
+// Handle server errors
+app.use((err, req, res, next) => {
+  if (err) console.error(err);
+  res.statusMessage = 'Internal Server Error';
+  res.status(500).render('error', {
+    errCode: res.statusCode,
+    errMessage: res.statusMessage
+  });
+  next();
+});
+
 app.listen(PORT, HOSTNAME);
 console.log(`Running server at: http://${HOSTNAME}:${PORT}`);
