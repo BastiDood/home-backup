@@ -8,12 +8,16 @@
     <!-- Navigation Bar -->
     <%- include('partials/nav-bar'); %>
     <!-- List of Files -->
-    <ul>
-      <% for (const file of files) { %>
-        <li>
-          <%= file %>
-        </li>
-      <% } %>
-    </ul>
+    <% if (files.length) { %>
+      <ul>
+        <% for (const file of files) { %>
+          <li>
+            <%= file %>
+          </li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <p>No files in the directory yet.</p>
+    <% } %>
   </body>
 </html>
