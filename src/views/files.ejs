@@ -7,5 +7,13 @@
   <body>
     <!-- Navigation Bar -->
     <%- include('partials/nav-bar'); %>
+    <!-- List of Files -->
+    <ul>
+      <% for (const file of files) { %>
+        <li>
+          <%= file %>
+        </li>
+      <% } %>
+    </ul>
   </body>
 </html>
