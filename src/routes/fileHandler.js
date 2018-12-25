@@ -16,8 +16,15 @@ router.route('*')
         res.render('files', { filepath, files });
       })
       .catch(error => {
-        res.statusMessage = 'File or directory not found';
-        res.status(404).render('files', { filepath, error } );
+        if (error.code === 'ENOENT') {
+          res.statusMessage = 'File or directory not found';
+          res.status(404).render('error', {
+            errCode: res.statusCode,
+            errMessage: res.statusMessage
+          });
+        } else {
+          console.error(error);
+        }
       });
   });
 
