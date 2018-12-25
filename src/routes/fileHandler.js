@@ -9,7 +9,7 @@ const getUploadsDirectory = require('../util/getUploadsDirectory');
 
 // Intercepts all routes from /files/*
 router.route('*')
-  .get((req, res) => {
+  .get((req, res, next) => {
     const filepath = req.params[0];
     getUploadsDirectory(filepath)
       .then(files => {
@@ -23,7 +23,7 @@ router.route('*')
             errMessage: res.statusMessage
           });
         } else {
-          throw error;
+          next(error);
         }
       });
   });
