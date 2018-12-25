@@ -5,10 +5,10 @@
 const fs = require('fs');
 const path = require('path');
 
-function getDirectoryContents() {
+function getUploadsDirectory(filepath) {
   return new Promise((resolve, reject) => {
     fs.readdir(
-      path.join(__dirname, '../../public/uploads'),
+      path.join(__dirname, '../../public/uploads', filepath),
       (err, files) => {
         if (err) reject(err);
         resolve(files);
@@ -17,4 +17,4 @@ function getDirectoryContents() {
   });
 }
 
-module.exports = getDirectoryContents;
+module.exports = getUploadsDirectory;

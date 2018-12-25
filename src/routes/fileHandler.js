@@ -8,14 +8,16 @@ const router = require('express').Router();
 const getUploadsDirectory = require('../util/getUploadsDirectory');
 
 router.get('*', (req, res) => {
-  getUploadsDirectory()
+  const filepath = req.params[0];
+
+  getUploadsDirectory(filepath)
     .then(files => {
-      res.render('files', {
-        files,
-        filepath: req.params[0]
-      });
+      res.render('files', { filepath, files });
     })
-    .catch(console.error);
+    .catch(error => {
+      res.statusMessage = 'File or directory not found';
+      res.status(404).render('files', { filepath, error } );
+    });
 });
 
 module.exports = router;
