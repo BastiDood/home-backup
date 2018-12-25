@@ -23,7 +23,7 @@ router.route('*')
             errMessage: res.statusMessage
           });
         } else {
-          console.error(error);
+          throw error;
         }
       });
   });
