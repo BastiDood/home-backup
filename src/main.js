@@ -50,9 +50,12 @@ app.use(helmet.referrerPolicy({
 }));
 
 // Load static assets
-app.use(express.static('public', {
-  dotfiles: 'deny'
-}));
+app.use(express.static(
+  path.join(__dirname, '../public'),
+  {
+    dotfiles: 'deny'
+  }
+));
 
 // Serve home page
 app.get('/', (req, res) => {

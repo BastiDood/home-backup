@@ -1,13 +1,25 @@
 // @ts-check
 'use strict';
 
+// NATIVE IMPORTS
+const path = require('path');
+
 // DEPENDENCIES
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 
 // USER IMPORTS
 const getUploadsDirectory = require('../util/getUploadsDirectory');
 
-// Intercepts all routes from /files/*
+// Intercept static files
+router.use(express.static(
+  path.join(__dirname, '../../public/uploads'),
+  {
+    dotfiles: 'deny'
+  }
+));
+
+// Intercept all routes from /files/*
 router.route('*')
   .get((req, res, next) => {
     const filepath = req.params[0];
