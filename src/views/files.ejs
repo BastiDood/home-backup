@@ -12,7 +12,9 @@
       <ul>
         <% for (const file of files) { %>
           <li>
-            <%= file %>
+            <a href="<%= file %>">
+              <%= file %>
+            </a>
           </li>
         <% } %>
       </ul>
