@@ -8,7 +8,7 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 
-// USER IMPORTS
+// UTILITY FUNCTIONS
 const getUploadsDirectory = require('../util/getUploadsDirectory');
 
 // Intercept static files
@@ -22,11 +22,15 @@ router.use(express.static(
 // Intercept all routes from /files/*
 router.route('*')
   .get((req, res, next) => {
-    const filepath = req.params[0];
+    const pathQuery = req.params[0];
 
-    getUploadsDirectory(filepath)
+    getUploadsDirectory(pathQuery)
       .then(([ directories, files ]) => {
-        res.render('files', { filepath, directories, files });
+        res.render('files', {
+          pathQuery,
+          directories,
+          files
+        });
       })
       .catch(error => {
         if (error.code === 'ENOENT') {

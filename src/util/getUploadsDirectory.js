@@ -5,22 +5,41 @@
 const fs = require('fs');
 const path = require('path');
 
-// Global Constants
-const UPLOADS_DIRECTORY = path.join(__dirname, '../../public/uploads');
+// MODULE IMPORTS
+const FileEntry = require('../data-types/FileEntry');
 
-function getUploadsDirectory(filepath) {
+// Global Constants
+const UPLOADS_DIRECTORY = path.resolve(__dirname, '../../public/uploads');
+
+function getUploadsDirectory(pathQuery) {
   return new Promise((resolve, reject) => {
+    const ABSOLUTE_PATH_QUERY = path.join(UPLOADS_DIRECTORY, pathQuery);
+
     fs.readdir(
-      path.join(UPLOADS_DIRECTORY, filepath),
+      ABSOLUTE_PATH_QUERY,
       {
         withFileTypes: true
       },
       (err, entries) => {
         if (err) reject(err);
 
-        // Filter directories and files
-        const directories = entries.filter(entry => entry.isDirectory());
-        const files = entries.filter(entry => entry.isFile());
+        // Transform directories and files
+        const directories = entries
+          .filter(entry => entry.isDirectory())
+          .map(entry => new FileEntry(
+            'Folder',
+            path.join(ABSOLUTE_PATH_QUERY, entry.name)
+          ));
+        const files = entries
+          .filter(entry => entry.isFile())
+          .map(entry => {
+            const fileType = path.extname(entry.name);
+
+            return new FileEntry(
+              `${fileType} File`,
+              path.join(ABSOLUTE_PATH_QUERY, entry.name)
+            );
+          });
 
         resolve([ directories, files ]);
       }

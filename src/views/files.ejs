@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><%= filepath; %></title>
+    <title><%= pathQuery; %></title>
     <%- include('partials/meta'); %>
   </head>
   <body>
     <!-- Navigation Bar -->
     <%- include('partials/nav-bar'); %>
-    <!-- List of Files -->
+    <!-- List of Directories and Files -->
     <% if (directories.length || files.length) { %>
       <ul>
         <% for (const directory of directories) { %>
@@ -19,7 +19,7 @@
         <% } %>
         <% for (const file of files) { %>
           <li>
-            <a href="<%= file.name %>">
+            <a href="<%= file.name %>" download="<%= file.name %>">
               <%= file.name %>
             </a>
           </li>
