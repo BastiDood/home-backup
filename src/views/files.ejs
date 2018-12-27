@@ -3,28 +3,53 @@
   <head>
     <title><%= pathQuery; %></title>
     <%- include('partials/meta'); %>
+    <link rel="stylesheet" href="/css/files.css">
   </head>
   <body>
     <!-- Navigation Bar -->
     <%- include('partials/nav-bar'); %>
     <!-- List of Directories and Files -->
     <% if (directories.length || files.length) { %>
-      <ul>
+      <div class="table">
+        <div class="row">
+          <div class="cell">Name</div>
+          <div class="cell">Type</div>
+          <div class="cell">Size</div>
+          <div class="cell">Date Modified</div>
+        </div>
         <% for (const directory of directories) { %>
-          <li>
-            <a href="<%= directory.name %>">
+          <a href="<%= directory.name %>" class="row">
+            <div class="cell">
               <%= directory.name %>
-            </a>
-          </li>
+            </div>
+            <div class="cell">
+              <%= directory.type %>
+            </div>
+            <div class="cell">
+              <%= directory.size %>
+            </div>
+            <div class="cell">
+              <%= directory.mtime %>
+            </div>
+          </a>
         <% } %>
         <% for (const file of files) { %>
-          <li>
-            <a href="<%= file.name %>" download="<%= file.name %>">
+          <a href="<%= file.name %>" class="row">
+            <div class="cell">
               <%= file.name %>
-            </a>
-          </li>
+            </div>
+            <div class="cell">
+              <%= file.type %> File
+            </div>
+            <div class="cell">
+              <%= file.size %>
+            </div>
+            <div class="cell">
+              <%= file.mtime %>
+            </div>
+          </a>
         <% } %>
-      </ul>
+      </div>
     <% } else { %>
       <p>No files in the directory yet.</p>
     <% } %>
