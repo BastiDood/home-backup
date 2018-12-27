@@ -20,6 +20,11 @@
   font-size: 1.25rem;
   color: var(--text-color);
 }
+.head {
+  font-family: var(--header-font);
+  font-size: 1.75rem;
+  text-decoration: underline;
+}
 
 /* Alignment Styles */
 .text {

@@ -12,10 +12,10 @@
     <% if (directories.length || files.length) { %>
       <div class="table">
         <div class="row">
-          <div class="cell text">Name</div>
-          <div class="cell text">Type</div>
-          <div class="cell number">Size</div>
-          <div class="cell number">Date Modified</div>
+          <div class="head cell text">Name</div>
+          <div class="head cell text">Type</div>
+          <div class="head cell number">File Size</div>
+          <div class="head cell number">Date Modified</div>
         </div>
         <a href="../" class="row entry">
           <div class="cell text">...</div>
@@ -31,9 +31,7 @@
             <div class="cell text">
               <%= directory.type %>
             </div>
-            <div class="cell number">
-              <%= directory.size %>
-            </div>
+            <div class="cell number"></div>
             <div class="cell number">
               <%= directory.mtime %>
             </div>
@@ -45,7 +43,7 @@
               <%= file.name %>
             </div>
             <div class="cell text">
-              <%= file.type %>
+              <%= file.type %> File
             </div>
             <div class="cell number">
               <%= file.size %>
