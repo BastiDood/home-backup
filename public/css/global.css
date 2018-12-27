@@ -18,6 +18,9 @@
   --main-bg-color: #282d32;
   --nav-bg-color: #222;
   --nav-bg-color-hover: #181818;
+  --header-font: 'Fira Sans';
+  --text-font: Roboto;
+  --text-color: #ddd;
   --transition-time: 150ms;
 }
 

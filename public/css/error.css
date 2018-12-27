@@ -1,7 +1,7 @@
 .error > div {
-  font-family: Roboto;
+  font-family: var(--text-font);
   font-size: 4rem;
-  color: #ddd;
+  color: var(--text-color);
   text-align: center;
 }
 .error > div > h1 {

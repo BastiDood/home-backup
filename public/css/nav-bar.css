@@ -11,9 +11,9 @@ nav > a {
   padding: 1rem 1rem 1rem 1.5rem;
   box-shadow: inset 0 0 var(--nav-bg-color);
   cursor: pointer;
-  font-family: 'Fira Sans';
+  font-family: var(--header-font);
   font-size: 1.1rem;
-  color: #ddd;
+  color: var(--text-color);
   text-decoration: none; 
   transition: box-shadow var(--transition-time) linear;
 }

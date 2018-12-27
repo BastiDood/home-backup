@@ -12,39 +12,45 @@
     <% if (directories.length || files.length) { %>
       <div class="table">
         <div class="row">
-          <div class="cell">Name</div>
-          <div class="cell">Type</div>
-          <div class="cell">Size</div>
-          <div class="cell">Date Modified</div>
+          <div class="cell text">Name</div>
+          <div class="cell text">Type</div>
+          <div class="cell number">Size</div>
+          <div class="cell number">Date Modified</div>
         </div>
+        <a href="../" class="row entry">
+          <div class="cell text">...</div>
+          <div class="cell text">Parent Folder</div>
+          <div class="cell text"></div>
+          <div class="cell text"></div>
+        </a>
         <% for (const directory of directories) { %>
-          <a href="<%= directory.name %>" class="row">
-            <div class="cell">
+          <a href="<%= directory.name %>" class="row entry">
+            <div class="cell text">
               <%= directory.name %>
             </div>
-            <div class="cell">
+            <div class="cell text">
               <%= directory.type %>
             </div>
-            <div class="cell">
+            <div class="cell number">
               <%= directory.size %>
             </div>
-            <div class="cell">
+            <div class="cell number">
               <%= directory.mtime %>
             </div>
           </a>
         <% } %>
         <% for (const file of files) { %>
-          <a href="<%= file.name %>" class="row">
-            <div class="cell">
+          <a href="<%= file.name %>" download="<%= file.name %>" class="row entry">
+            <div class="cell text">
               <%= file.name %>
             </div>
-            <div class="cell">
-              <%= file.type %> File
+            <div class="cell text">
+              <%= file.type %>
             </div>
-            <div class="cell">
+            <div class="cell number">
               <%= file.size %>
             </div>
-            <div class="cell">
+            <div class="cell number">
               <%= file.mtime %>
             </div>
           </a>
