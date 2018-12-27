@@ -11,6 +11,13 @@ const FileEntry = require('../data-types/FileEntry');
 // Global Constants
 const UPLOADS_DIRECTORY = path.resolve(__dirname, '../../public/uploads');
 
+/**
+ * Given the relative path from the URL search parameters, this function gets the
+ * contents of the directory relative to the `UPLOADS_DIRECTORY`.
+ * @param {string} pathQuery - Relative path as dictated by the URL search parameters
+ * @returns {Promise<Array<FileEntry[]>>} An array containing two arrays containing
+ * the directory and file objects, respectively
+ */
 function getUploadsDirectory(pathQuery) {
   return new Promise((resolve, reject) => {
     const ABSOLUTE_PATH_QUERY = path.join(UPLOADS_DIRECTORY, pathQuery);
@@ -32,14 +39,10 @@ function getUploadsDirectory(pathQuery) {
           ));
         const files = entries
           .filter(entry => entry.isFile())
-          .map(entry => {
-            const fileType = path.extname(entry.name);
-
-            return new FileEntry(
-              `${fileType} File`,
-              path.join(ABSOLUTE_PATH_QUERY, entry.name)
-            );
-          });
+          .map(entry => new FileEntry(
+            path.extname(entry.name),
+            path.join(ABSOLUTE_PATH_QUERY, entry.name)
+          ));
 
         resolve([ directories, files ]);
       }
