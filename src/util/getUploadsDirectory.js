@@ -28,7 +28,10 @@ function getUploadsDirectory(pathQuery) {
         withFileTypes: true
       },
       (err, entries) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
 
         // Transform directories and files
         const directories = entries
