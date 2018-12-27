@@ -8,12 +8,19 @@
     <!-- Navigation Bar -->
     <%- include('partials/nav-bar'); %>
     <!-- List of Files -->
-    <% if (files.length) { %>
+    <% if (directories.length || files.length) { %>
       <ul>
+        <% for (const directory of directories) { %>
+          <li>
+            <a href="<%= directory.name %>">
+              <%= directory.name %>
+            </a>
+          </li>
+        <% } %>
         <% for (const file of files) { %>
           <li>
-            <a href="<%= file %>">
-              <%= file %>
+            <a href="<%= file.name %>">
+              <%= file.name %>
             </a>
           </li>
         <% } %>

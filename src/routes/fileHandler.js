@@ -23,9 +23,10 @@ router.use(express.static(
 router.route('*')
   .get((req, res, next) => {
     const filepath = req.params[0];
+
     getUploadsDirectory(filepath)
-      .then(files => {
-        res.render('files', { filepath, files });
+      .then(([ directories, files ]) => {
+        res.render('files', { filepath, directories, files });
       })
       .catch(error => {
         if (error.code === 'ENOENT') {
