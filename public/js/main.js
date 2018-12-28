@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // <div> cell with input
     const cellWithInput = createCell('', 'text', true);
+    const input = cellWithInput.children[0];
 
     // Wrapper <div> cells
     const cellText = createCell('Folder', 'text');
@@ -35,6 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tableTarget.insertBefore(wrapperRow, beforeTarget);
 
     // Put focus on <input>
-    cellWithInput.children[0].focus();
+    input.focus();
   });
 });
