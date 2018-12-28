@@ -47,7 +47,7 @@ const storage = multer.diskStorage({
 });
 
 // Initialize Uploader
-const upload = multer({ storage });
+const upload = multer({ storage }).array('filesUpload');
 
 // Intercept static files
 router.use(express.static(
@@ -61,8 +61,17 @@ router.use(express.static(
 router.route('*')
   .get(renderFileSystem)
   .post(
-    upload.array('filesUpload'),
-    renderFileSystem
+    (req, res, next) => {
+      const pathQuery = path.posix.join(
+        req.params[0],
+        'files'
+      );
+
+      upload(req, res, err => {
+        if (err) next(err);
+        res.redirect(pathQuery);
+      });
+    }
   );
 
 module.exports = router;
