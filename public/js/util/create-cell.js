@@ -23,7 +23,7 @@ function createCell(text = '', type, hasTextInput = false) {
     input.addEventListener('blur', async function() {
       const noFileParagraphElement = document.getElementById('no-files');
       const folderName = (this.value) ? this.value : this.placeholder;
-      const folderNameTextNode = document.createTextNode(folderName);
+      const folderNameTextNode = document.createTextNode(`${folderName}/`);
       const pathToNewFolder = window.location.pathname + folderName;
       
       // Send a request to the server to create a new directory

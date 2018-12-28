@@ -72,10 +72,7 @@ router.route('*')
       if (req.body.mkDir) {
         const { SAVE_TO } = req.body;
         const destination = path.join(UPLOADS_DIRECTORY, SAVE_TO);
-        fs.mkdir(destination, err => {
-          next(err);
-          res.end('Directory created!');
-        });
+        fs.mkdirSync(destination);
         return;
       }
 
