@@ -10,14 +10,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!this.length) form.submit();
   });
 
-  // Create a new folder
+  // Create a new folder on click
   newFolderButton.addEventListener('click', () => {
     const tableTarget = document.getElementById('table-target');
     const beforeTarget = document.getElementsByClassName('before-target')[0];
-    
+
+    // Wrapper <div> cells
+    const text = document.createTextNode('Folder');
+    const cell = document.createElement('div');
+    cell.classList.add('cell');
+    const cellText = cell.cloneNode();
+    cellText.classList.add('text');
+    cellText.appendChild(text);
+    const cellNumber = cell.cloneNode();
+    cellNumber.classList.add('number');
+
+    // <div> cell with input
     const input = document.createElement('input');
     input.type = 'text';
+    const cellWithInput = cell.cloneNode();
+    cellWithInput.appendChild(input);
 
-    tableTarget.insertBefore(input, beforeTarget);
+    // Wrapper <a> row
+    const wrapperRow = document.createElement('a');
+    wrapperRow.classList.add('hoverable', 'row', 'before-target');
+    wrapperRow.appendChild(cellWithInput);
+    wrapperRow.appendChild(cellText);
+    wrapperRow.appendChild(cellNumber);
+    wrapperRow.appendChild(cellNumber.cloneNode());
+
+    // Insert <input> before directories
+    tableTarget.insertBefore(wrapperRow, beforeTarget);
   });
 });

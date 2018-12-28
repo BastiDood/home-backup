@@ -6,7 +6,7 @@
     <div class="head cell number">Date Modified</div>
   </div>
   <% if (!isRoot) { %>
-    <a href="../" class="hoverable row ">
+    <a href="../" class="hoverable row">
       <div class="cell text">...</div>
       <div class="cell text">Parent Folder</div>
       <div class="cell text"></div>
@@ -15,7 +15,7 @@
   <% } %>
   <% if (directories.length || files.length) { %>
       <% for (const directory of directories) { %>
-        <a href="<%= directory.name %>" class="hoverable row entry before-target">
+        <a href="<%= directory.name %>" class="hoverable row before-target">
           <div class="cell text">
             <%= directory.name %>
           </div>
