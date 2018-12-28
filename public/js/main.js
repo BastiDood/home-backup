@@ -1,9 +1,15 @@
+// MODULE IMPORTS
 import createCell from './util/create-cell.js';
 import createRow from './util/create-row.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // <form></form>
   const form = document.getElementById('fsControl');
+
+  // <input type="file" />
   const filesUpload = document.getElementById('filesUpload');
+
+  // <label for="filesUpload"></label>
   const newFolderButton = document.getElementById('newFolder');
 
   // Submit the file as soon as the user selects
