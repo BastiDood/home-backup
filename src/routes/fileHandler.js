@@ -67,7 +67,7 @@ router.route('*')
       });
   })
   .post(
-    upload.array('files'),
+    upload.array('filesUpload'),
     (req, res) => {
       console.log(req.file);
       res.send('File sent.');
