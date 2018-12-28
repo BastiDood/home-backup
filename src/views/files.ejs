@@ -17,12 +17,14 @@
           <div class="head cell number">File Size</div>
           <div class="head cell number">Date Modified</div>
         </div>
-        <a href="../" class="row entry">
-          <div class="cell text">...</div>
-          <div class="cell text">Parent Folder</div>
-          <div class="cell text"></div>
-          <div class="cell text"></div>
-        </a>
+        <% if (!isRoot) { %>
+          <a href="../" class="row entry">
+            <div class="cell text">...</div>
+            <div class="cell text">Parent Folder</div>
+            <div class="cell text"></div>
+            <div class="cell text"></div>
+          </a>
+        <% } %>
         <% for (const directory of directories) { %>
           <a href="<%= directory.name %>" class="row entry">
             <div class="cell text">

@@ -23,11 +23,13 @@ router.use(express.static(
 router.route('*')
   .get((req, res, next) => {
     const pathQuery = req.params[0];
+    const isRoot = pathQuery === '/';
 
     getUploadsDirectory(pathQuery)
       .then(([ directories, files ]) => {
         res.render('files', {
           pathQuery,
+          isRoot,
           directories,
           files
         });
