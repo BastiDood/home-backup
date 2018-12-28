@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Create a new folder
   newFolderButton.addEventListener('click', () => {
-    const table = document.getElementsByClassName('table')[0];
+    const tableTarget = document.getElementById('table-target');
     const beforeTarget = document.getElementsByClassName('before-target')[0];
     
     const input = document.createElement('input');
     input.type = 'text';
 
-    table.insertBefore(input, beforeTarget);
+    tableTarget.insertBefore(input, beforeTarget);
   });
 });
