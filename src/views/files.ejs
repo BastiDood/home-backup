@@ -8,6 +8,21 @@
   <body>
     <!-- Navigation Bar -->
     <%- include('partials/nav-bar'); %>
+    <!-- Add New Directories and Files -->
+    <form
+      action="./"
+      method="post"
+      enctype="multipart/form-data"
+      class="buttons"
+    >
+      <label class="hoverable">
+        New Folder
+      </label>
+      <label for="files" class="hoverable">
+        Upload File
+      </label>
+      <input type="file" name="files" id="files" />
+    </form>
     <!-- List of Directories and Files -->
     <% if (directories.length || files.length) { %>
       <div class="table">
@@ -18,7 +33,7 @@
           <div class="head cell number">Date Modified</div>
         </div>
         <% if (!isRoot) { %>
-          <a href="../" class="row entry">
+          <a href="../" class="hoverable row ">
             <div class="cell text">...</div>
             <div class="cell text">Parent Folder</div>
             <div class="cell text"></div>
@@ -26,7 +41,7 @@
           </a>
         <% } %>
         <% for (const directory of directories) { %>
-          <a href="<%= directory.name %>" class="row entry">
+          <a href="<%= directory.name %>" class="hoverable row ">
             <div class="cell text">
               <%= directory.name %>
             </div>
@@ -40,7 +55,7 @@
           </a>
         <% } %>
         <% for (const file of files) { %>
-          <a href="<%= file.name %>" download="<%= file.name %>" class="row entry">
+          <a href="<%= file.name %>" download="<%= file.name %>" class="hoverable row ">
             <div class="cell text">
               <%= file.name %>
             </div>
@@ -48,7 +63,7 @@
               <%= file.type %> File
             </div>
             <div class="cell number">
-              <%= file.size %>
+              <%= file.size %> B
             </div>
             <div class="cell number">
               <%= file.mtime %>

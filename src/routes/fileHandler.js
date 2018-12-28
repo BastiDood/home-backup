@@ -7,9 +7,29 @@ const path = require('path');
 // DEPENDENCIES
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 
 // UTILITY FUNCTIONS
 const getUploadsDirectory = require('../util/getUploadsDirectory');
+
+// Global Constants
+const UPLOADS_DIRECTORY = path.resolve(__dirname, '../../public/uploads');
+
+// Multer Configuration
+const storage = multer.diskStorage({
+  destination: UPLOADS_DIRECTORY,
+  filename(req, file, cb) {
+    const { originalname } = file;
+    const ext = path.extname(originalname);
+
+    cb(null, `${originalname}-${Date.now()}${ext}`);
+  }
+});
+
+// Initialize Uploader
+const upload = multer({
+  storage
+});
 
 // Intercept static files
 router.use(express.static(
@@ -45,6 +65,13 @@ router.route('*')
           next(error);
         }
       });
-  });
+  })
+  .post(
+    upload.array('files'),
+    (req, res) => {
+      console.log(req.file);
+      res.send('File sent.');
+    }
+  );
 
 module.exports = router;

@@ -7,12 +7,6 @@
   display: table-row;
   text-decoration: none;
 }
-.entry {
-  transition: background-color var(--transition-time) linear;
-}
-.entry:hover {
-  background-color: #4e6480;
-}
 .cell {
   display: table-cell;
   padding: 1rem;
@@ -24,6 +18,36 @@
   font-family: var(--header-font);
   font-size: 1.75rem;
   text-decoration: underline;
+}
+
+/* Hoverable Elements */
+.hoverable {
+  transition: background-color var(--transition-time) linear;
+}
+.hoverable:hover {
+  background-color: #4e6480;
+}
+
+/* Button Styles */
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+label {
+  display: block;
+  margin: 0;
+  padding: 1rem;
+  border: 0;
+  flex-grow: 1;
+  background-color: transparent;
+  font-family: var(--header-font);
+  font-size: 4rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+input {
+  display: none;
 }
 
 /* Alignment Styles */
