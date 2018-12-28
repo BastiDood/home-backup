@@ -20,9 +20,12 @@ function createCell(text = '', type, hasTextInput = false) {
       if (event.key === 'Enter') this.blur();
     });
     input.addEventListener('blur', function() {
+      const noFileParagraphElement = document.getElementById('no-file');
       const folderName = (this.value) ? this.value : this.placeholder;
       const folderNameTextNode = document.createTextNode(folderName);
+      this.parentNode.parentNode.href = window.location.pathname + folderName;
       this.remove();
+      if (noFileParagraphElement) noFileParagraphElement.remove();
       cell.appendChild(folderNameTextNode);
     });
     cell.appendChild(input);
