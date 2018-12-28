@@ -62,14 +62,12 @@ router.route('*')
   .get(renderFileSystem)
   .post(
     (req, res, next) => {
-      const pathQuery = path.posix.join(
-        req.params[0],
-        'files'
-      );
+      const pathQuery = req.params[0];
+      const redirectPath = path.posix.join(pathQuery, 'files');
 
       upload(req, res, err => {
         if (err) next(err);
-        res.redirect(pathQuery);
+        res.redirect(redirectPath);
       });
     }
   );
