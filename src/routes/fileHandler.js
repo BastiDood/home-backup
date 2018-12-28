@@ -32,7 +32,6 @@ const storage = multer.diskStorage({
    */
   destination(req, file, cb) {
     const pathQuery = req.params[0];
-
     cb(
       null,
       path.join(UPLOADS_DIRECTORY, pathQuery)
@@ -41,7 +40,6 @@ const storage = multer.diskStorage({
   filename(req, file, cb) {
     const { originalname } = file;
     const parsedFile = path.parse(originalname);
-
     cb(null, `${parsedFile.name}-${Date.now()}${parsedFile.ext}`);
   }
 });
@@ -64,7 +62,6 @@ router.route('*')
     (req, res, next) => {
       const pathQuery = req.params[0];
       const redirectPath = path.posix.join(pathQuery, 'files');
-
       upload(req, res, err => {
         if (err) next(err);
         res.redirect(redirectPath);

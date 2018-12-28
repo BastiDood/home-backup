@@ -13,7 +13,6 @@ class FileEntry {
    */
   constructor(type, fullPath) {
     const { size, mtime } = fs.lstatSync(fullPath);
-
     this.name = path.basename(fullPath);
     this.type = type;
     this.size = size;

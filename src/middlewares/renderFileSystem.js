@@ -12,7 +12,6 @@ const getUploadsDirectory = require('../util/getUploadsDirectory');
 function renderFileSystem(req, res, next) {
   const pathQuery = req.params[0];
   const isRoot = pathQuery === '/';
-
   getUploadsDirectory(pathQuery)
     .then(([ directories, files ]) => {
       res.render('files', {

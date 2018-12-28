@@ -6,6 +6,14 @@
     "jest": true
   },
   "extends": "eslint:recommended",
+  "overrides": [
+    {
+      "files": "public/js/*",
+      "parserOptions": {
+        "sourceType": "module"
+      }
+    }
+  ],
   "parserOptions": {
     "ecmaVersion": 2018
   },

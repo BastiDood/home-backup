@@ -1,4 +1,4 @@
-'use strict';
+import createCell from './create-cell.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('fsControl');
@@ -16,21 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const beforeTarget = document.getElementsByClassName('before-target')[0];
 
     // Wrapper <div> cells
-    const text = document.createTextNode('Folder');
-    const cell = document.createElement('div');
-    cell.classList.add('cell');
-    const cellText = cell.cloneNode();
-    cellText.classList.add('text');
-    cellText.appendChild(text);
-    const cellNumber = cell.cloneNode();
-    cellNumber.classList.add('number');
+    const cellText = createCell('Folder', 'text');
+    const cellNumber = createCell('', 'number');
 
     // <div> cell with input
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = 'New Folder';
-    const cellWithInput = cell.cloneNode();
-    cellWithInput.appendChild(input);
+    const cellWithInput = createCell('', 'text', true);
 
     // Wrapper <a> row
     const wrapperRow = document.createElement('a');
@@ -44,6 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tableTarget.insertBefore(wrapperRow, beforeTarget);
 
     // Put focus on <input>
-    input.focus();
+    cellWithInput.children[0].focus();
   });
 });
