@@ -11,6 +11,9 @@ const path = require('path');
 // ROUTES
 const fileHandler = require('./routes/fileHandler');
 
+// MIDDLEWARES
+const logRequests = require('./middlewares/logRequests');
+
 // UTILITY FUNCTIONS
 const getServerDetails = require('./util/getServerDetails');
 
@@ -25,14 +28,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
 // Log each request
-app.use((req, res, next) => {
-  console.group(`${new Date()}`);
-  console.log(`User-agent: ${req.headers['user-agent']}`);
-  console.log(`From IP: ${req.ip}`);
-  console.log(`Request: ${req.method} ${req.url}`);
-  console.groupEnd();
-  next();
-});
+app.use(logRequests);
 
 // Enable security headers by Helmet
 app.use(helmet());
