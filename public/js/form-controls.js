@@ -2,9 +2,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('fsControl');
-  const filesInput = document.getElementById('filesUpload');
+  const filesUpload = document.getElementById('filesUpload');
 
-  filesInput.addEventListener('change', () => {
-    form.submit();
+  filesUpload.addEventListener('change', function() {
+    if (!this.length) form.submit();
   });
 });
