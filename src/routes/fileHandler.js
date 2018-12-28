@@ -40,9 +40,9 @@ const storage = multer.diskStorage({
   },
   filename(req, file, cb) {
     const { originalname } = file;
-    const ext = path.extname(originalname);
+    const parsedFile = path.parse(originalname);
 
-    cb(null, `${originalname}-${Date.now()}${ext}`);
+    cb(null, `${parsedFile.name}-${Date.now()}${parsedFile.ext}`);
   }
 });
 
