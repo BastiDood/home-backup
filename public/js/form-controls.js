@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // <div> cell with input
     const input = document.createElement('input');
     input.type = 'text';
+    input.placeholder = 'New Folder';
     const cellWithInput = cell.cloneNode();
     cellWithInput.appendChild(input);
 
@@ -36,10 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapperRow.classList.add('hoverable', 'row', 'before-target');
     wrapperRow.appendChild(cellWithInput);
     wrapperRow.appendChild(cellText);
-    wrapperRow.appendChild(cellNumber);
+    wrapperRow.appendChild(cellNumber.cloneNode());
     wrapperRow.appendChild(cellNumber.cloneNode());
 
     // Insert <input> before directories
     tableTarget.insertBefore(wrapperRow, beforeTarget);
+
+    // Put focus on <input>
+    input.focus();
   });
 });

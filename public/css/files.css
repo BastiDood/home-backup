@@ -46,6 +46,11 @@ label {
   font-size: 4rem;
   color: var(--text-color);
 }
+input[type=text] {
+  width: 100%;
+  font-family: var(--text-font);
+  font-size: 1.15rem;
+}
 input[type=file] {
   display: none;
 }
