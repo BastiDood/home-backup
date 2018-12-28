@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Submit the file as soon as the user selects
   filesUpload.addEventListener('change', function() {
-    if (!this.length) form.submit();
+    if (this.files.length) form.submit();
   });
 
   // Create a new folder on click
