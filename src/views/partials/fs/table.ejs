@@ -15,7 +15,7 @@
   <% } %>
   <% if (directories.length || files.length) { %>
       <% for (const directory of directories) { %>
-        <a href="<%= directory.name %>" class="hoverable row ">
+        <a href="<%= directory.name %>" class="hoverable row entry before-target">
           <div class="cell text">
             <%= directory.name %>
           </div>
@@ -29,7 +29,7 @@
         </a>
       <% } %>
       <% for (const file of files) { %>
-        <a href="<%= file.name %>" download="<%= file.name %>" class="hoverable row ">
+        <a href="<%= file.name %>" download="<%= file.name %>" class="hoverable row before-target">
           <div class="cell text">
             <%= file.name %>
           </div>
@@ -45,6 +45,6 @@
         </a>
       <% } %>
   <% } else { %>
-    <p>No files in the directory yet.</p>
+    <p class="before-target">No files in the directory yet.</p>
   <% } %>
 </div>

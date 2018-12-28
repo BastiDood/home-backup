@@ -23,6 +23,7 @@
 /* Hoverable Elements */
 .hoverable {
   transition: background-color var(--transition-time) linear;
+  cursor: pointer;
 }
 .hoverable:hover {
   background-color: #4e6480;
@@ -44,9 +45,8 @@ label {
   font-family: var(--header-font);
   font-size: 4rem;
   color: var(--text-color);
-  cursor: pointer;
 }
-input {
+input[type=file] {
   display: none;
 }
 
