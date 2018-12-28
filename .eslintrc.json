@@ -8,7 +8,7 @@
   "extends": "eslint:recommended",
   "overrides": [
     {
-      "files": "public/js/*",
+      "files": "public/js/**",
       "parserOptions": {
         "sourceType": "module"
       }

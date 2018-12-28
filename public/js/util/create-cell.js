@@ -16,6 +16,15 @@ function createCell(text = '', type, hasTextInput = false) {
     const input = document.createElement('input');
     input.type = 'text';
     input.placeholder = 'New Folder';
+    input.addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') this.blur();
+    });
+    input.addEventListener('blur', function() {
+      const folderName = (this.value) ? this.value : this.placeholder;
+      const folderNameTextNode = document.createTextNode(folderName);
+      this.remove();
+      cell.appendChild(folderNameTextNode);
+    });
     cell.appendChild(input);
   }
 
