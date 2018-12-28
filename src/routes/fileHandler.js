@@ -9,15 +9,35 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 
-// UTILITY FUNCTIONS
-const getUploadsDirectory = require('../util/getUploadsDirectory');
+// MIDDLEWARES
+const renderFileSystem = require('../middlewares/renderFileSystem');
 
 // Global Constants
 const UPLOADS_DIRECTORY = path.resolve(__dirname, '../../public/uploads');
 
 // Multer Configuration
 const storage = multer.diskStorage({
-  destination: UPLOADS_DIRECTORY,
+  /**
+   * The required callback from Multer.
+   * @callback destCb
+   * @param {Error | null} err - The Error object
+   * @param {string} destination - Path to the directory for uploading
+   */
+  /**
+   * Dynamically sets the upload destination of the file.
+   * @param {express.Request} req - The Request object
+   * @param {Express.Multer.File} file - The Multer file object
+   * @param {destCb} cb - Callback function that checks for errors
+   * and sets the upload path
+   */
+  destination(req, file, cb) {
+    const pathQuery = req.params[0];
+
+    cb(
+      null,
+      path.join(UPLOADS_DIRECTORY, pathQuery)
+    );
+  },
   filename(req, file, cb) {
     const { originalname } = file;
     const ext = path.extname(originalname);
@@ -27,13 +47,11 @@ const storage = multer.diskStorage({
 });
 
 // Initialize Uploader
-const upload = multer({
-  storage
-});
+const upload = multer({ storage });
 
 // Intercept static files
 router.use(express.static(
-  path.join(__dirname, '../../public/uploads'),
+  UPLOADS_DIRECTORY,
   {
     dotfiles: 'deny'
   }
@@ -41,37 +59,10 @@ router.use(express.static(
 
 // Intercept all routes from /files/*
 router.route('*')
-  .get((req, res, next) => {
-    const pathQuery = req.params[0];
-    const isRoot = pathQuery === '/';
-
-    getUploadsDirectory(pathQuery)
-      .then(([ directories, files ]) => {
-        res.render('files', {
-          pathQuery,
-          isRoot,
-          directories,
-          files
-        });
-      })
-      .catch(error => {
-        if (error.code === 'ENOENT') {
-          res.statusMessage = 'File or directory not found';
-          res.status(404).render('error', {
-            errCode: res.statusCode,
-            errMessage: res.statusMessage
-          });
-        } else {
-          next(error);
-        }
-      });
-  })
+  .get(renderFileSystem)
   .post(
     upload.array('filesUpload'),
-    (req, res) => {
-      console.log(req.file);
-      res.send('File sent.');
-    }
+    renderFileSystem
   );
 
 module.exports = router;
