@@ -18,6 +18,7 @@
     "url": "https://github.com/Some-Dood/home-backup.git"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",

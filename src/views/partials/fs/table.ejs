@@ -7,7 +7,7 @@
   </div>
   <% if (!isRoot) { %>
     <a href="../" class="hoverable row">
-      <div class="cell text">...</div>
+      <div class="cell text">..&#47;</div>
       <div class="cell text">Parent Folder</div>
       <div class="cell text"></div>
       <div class="cell text"></div>
@@ -17,7 +17,7 @@
       <% for (const directory of directories) { %>
         <a href="<%= directory.name %>" class="hoverable row before-target">
           <div class="cell text">
-            <%= directory.name %>
+            <%= directory.name %>&#47;
           </div>
           <div class="cell text">
             <%= directory.type %>
@@ -45,6 +45,6 @@
         </a>
       <% } %>
   <% } else { %>
-    <p id="no-file" class="before-target">No files in the directory yet.</p>
+    <p id="no-files" class="before-target">No files in the directory yet.</p>
   <% } %>
 </div>

@@ -2,9 +2,11 @@
 'use strict';
 
 // NATIVE IMPORTS
+const fs = require('fs');
 const path = require('path');
 
 // DEPENDENCIES
+const bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
@@ -14,6 +16,9 @@ const renderFileSystem = require('../middlewares/renderFileSystem');
 
 // Global Constants
 const UPLOADS_DIRECTORY = path.resolve(__dirname, '../../public/uploads');
+
+// Body Parser Configuration
+const jsonParser = bodyParser.json();
 
 // Multer Configuration
 const storage = multer.diskStorage({
@@ -59,9 +64,23 @@ router.use(express.static(
 router.route('*')
   .get(renderFileSystem)
   .post(
+    jsonParser,
     (req, res, next) => {
       const pathQuery = req.params[0];
-      const redirectPath = path.posix.join(pathQuery, 'files');
+
+      // Check if request is for directory creation
+      if (req.body.mkDir) {
+        const { SAVE_TO } = req.body;
+        const destination = path.join(UPLOADS_DIRECTORY, SAVE_TO);
+        fs.mkdir(destination, err => {
+          next(err);
+          res.end('Directory created!');
+        });
+        return;
+      }
+
+      // Manage file uploads
+      const redirectPath = path.posix.join('/files', pathQuery);
       upload(req, res, err => {
         if (err) next(err);
         res.redirect(redirectPath);
