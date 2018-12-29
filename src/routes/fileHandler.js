@@ -75,10 +75,7 @@ router.route('*')
           '/files/',
           PATH_TO_NEW_FOLDER
         );
-        const isSafe = !/[\w\d]+(\/[a-z\d\s]+)*/i.test(SAVE_TO);
-        console.log(PATH_TO_NEW_FOLDER);
-        console.log(SAVE_TO);
-        console.log(isSafe);
+        const isSafe = /^[\w\d]+(\/[a-z\d\s]+)*$/i.test(SAVE_TO);
         
         // Check if the file path is safe
         if (isSafe) {
@@ -89,7 +86,8 @@ router.route('*')
           fs.mkdir(DESTINATION, err => {
             if (err === null) {
               res.status(201).json({
-                isSuccessful: true
+                isSuccessful: true,
+                mtime: fs.lstatSync(DESTINATION).mtime
               });
             } else {
               res.status(409).json({

@@ -1,3 +1,5 @@
+// import createDirectory from './create-directory.js';
+
 /**
  * Creates a single cell of data.
  * @param {string} [text=''] - Text to be inserted as a text node
@@ -46,7 +48,10 @@ function createCell(text = '', type, hasTextInput = false) {
 
       if (json.isSuccessful && status === 201) {
         // Handle successful folder creation
-        this.parentNode.parentNode.href = PATH_TO_NEW_FOLDER;
+        const wrapperRow = this.parentNode.parentNode;
+        const cellDate = wrapperRow.children[3];
+        wrapperRow.href = PATH_TO_NEW_FOLDER;
+        cellDate.appendChild(document.createTextNode(Date(json.mtime)));
         this.remove();
 
         // Check if there are no files in the current directory
