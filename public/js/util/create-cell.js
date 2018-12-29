@@ -20,27 +20,29 @@ function createCell(text = '', type, hasTextInput = false) {
     input.addEventListener('keyup', function(event) {
       if (event.key === 'Enter') this.blur();
     });
-    input.addEventListener('blur', function() {
+    input.addEventListener('blur', async function() {
       const noFileParagraphElement = document.getElementById('no-files');
       const folderName = (this.value) ? this.value : this.placeholder;
       const folderNameTextNode = document.createTextNode(`${folderName}/`);
       const PATH_TO_NEW_FOLDER = window.location.pathname + folderName;
       
       // Send a request to the server to create a new directory
-      fetch(PATH_TO_NEW_FOLDER, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          mkDir: true,
-          PATH_TO_NEW_FOLDER
-        })
-      })
-        .then(res => res.json())
-        .then(console.log)
-        .catch(console.error);
+      const response = await fetch(
+        PATH_TO_NEW_FOLDER,
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            mkDir: true,
+            PATH_TO_NEW_FOLDER
+          })
+        }
+      );
+      const status = response.status;
+      const json = await response.json();
 
       this.parentNode.parentNode.href = PATH_TO_NEW_FOLDER;
       this.remove();
