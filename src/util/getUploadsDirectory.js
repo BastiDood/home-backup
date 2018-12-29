@@ -22,34 +22,38 @@ function getUploadsDirectory(pathQuery) {
   return new Promise((resolve, reject) => {
     const ABSOLUTE_PATH_QUERY = path.join(UPLOADS_DIRECTORY, pathQuery);
 
-    fs.readdir(
-      ABSOLUTE_PATH_QUERY,
-      {
-        withFileTypes: true
-      },
-      (err, entries) => {
-        if (err) {
-          reject(err);
-          return;
+    // Creates the uploads folder if it does not exist
+    fs.mkdir(UPLOADS_DIRECTORY, err => {
+      if (err.code !== 'EEXIST') throw err;
+      fs.readdir(
+        ABSOLUTE_PATH_QUERY,
+        {
+          withFileTypes: true
+        },
+        (err, entries) => {
+          if (err) {
+            reject(err);
+            return;
+          }
+  
+          // Transform directories and files
+          const directories = entries
+            .filter(entry => entry.isDirectory())
+            .map(entry => new FileEntry(
+              'Folder',
+              path.join(ABSOLUTE_PATH_QUERY, entry.name)
+            ));
+          const files = entries
+            .filter(entry => entry.isFile())
+            .map(entry => new FileEntry(
+              path.extname(entry.name),
+              path.join(ABSOLUTE_PATH_QUERY, entry.name)
+            ));
+  
+          resolve([ directories, files ]);
         }
-
-        // Transform directories and files
-        const directories = entries
-          .filter(entry => entry.isDirectory())
-          .map(entry => new FileEntry(
-            'Folder',
-            path.join(ABSOLUTE_PATH_QUERY, entry.name)
-          ));
-        const files = entries
-          .filter(entry => entry.isFile())
-          .map(entry => new FileEntry(
-            path.extname(entry.name),
-            path.join(ABSOLUTE_PATH_QUERY, entry.name)
-          ));
-
-        resolve([ directories, files ]);
-      }
-    );
+      );
+    });
   });
 }
 
