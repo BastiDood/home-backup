@@ -44,12 +44,18 @@ function createCell(text = '', type, hasTextInput = false) {
       const status = response.status;
       const json = await response.json();
 
-      this.parentNode.parentNode.href = PATH_TO_NEW_FOLDER;
-      this.remove();
+      if (json.isSuccessful && status === 201) {
+        // Handle successful folder creation
+        this.parentNode.parentNode.href = PATH_TO_NEW_FOLDER;
+        this.remove();
 
-      // Check if there are no files in the current directory
-      if (noFileParagraphElement) noFileParagraphElement.remove();
-      cell.appendChild(folderNameTextNode);
+        // Check if there are no files in the current directory
+        if (noFileParagraphElement) noFileParagraphElement.remove();
+        cell.appendChild(folderNameTextNode);
+      } else if (!json.isSuccessful && status === 409) {
+        this.focus();
+        this.select();
+      }
     });
 
     cell.appendChild(input);

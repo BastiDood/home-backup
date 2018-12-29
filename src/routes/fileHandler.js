@@ -80,13 +80,15 @@ router.route('*')
           SAVE_TO
         );
         const DESTINATION = decodeURIComponent(ENCODED_DESTINATION);
+        
         fs.mkdir(DESTINATION, err => {
           if (err === null) res.status(201).json({
             isSuccessful: true
           });
           else res.status(409).json({
             isSuccessfulL: false,
-            errCode: err.code
+            errCode: err.code,
+            errMsg: 'The folder already exists.'
           });
         });
         return;
