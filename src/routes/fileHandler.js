@@ -70,10 +70,25 @@ router.route('*')
 
       // Check if request is for directory creation
       if (req.body.mkDir) {
-        const { SAVE_TO } = req.body;
-        const destination = path.join(UPLOADS_DIRECTORY, SAVE_TO);
-        // TODO: Make this more efficient and less error-prone
-        fs.mkdirSync(destination);
+        const { PATH_TO_NEW_FOLDER } = req.body;
+        const SAVE_TO = path.relative(
+          '/files/',
+          PATH_TO_NEW_FOLDER
+        );
+        const ENCODED_DESTINATION = path.join(
+          UPLOADS_DIRECTORY,
+          SAVE_TO
+        );
+        const DESTINATION = decodeURIComponent(ENCODED_DESTINATION);
+        fs.mkdir(DESTINATION, err => {
+          if (err === null) res.json({
+            isSuccessful: true,
+          });
+          else res.json({
+            isSuccessfulL: false,
+            errCode: err.code
+          });
+        });
         return;
       }
 

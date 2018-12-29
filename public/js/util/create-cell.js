@@ -20,14 +20,14 @@ function createCell(text = '', type, hasTextInput = false) {
     input.addEventListener('keyup', function(event) {
       if (event.key === 'Enter') this.blur();
     });
-    input.addEventListener('blur', async function() {
+    input.addEventListener('blur', function() {
       const noFileParagraphElement = document.getElementById('no-files');
       const folderName = (this.value) ? this.value : this.placeholder;
       const folderNameTextNode = document.createTextNode(`${folderName}/`);
-      const pathToNewFolder = window.location.pathname + folderName;
+      const PATH_TO_NEW_FOLDER = window.location.pathname + folderName;
       
       // Send a request to the server to create a new directory
-      await fetch(pathToNewFolder, {
+      fetch(PATH_TO_NEW_FOLDER, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -35,11 +35,14 @@ function createCell(text = '', type, hasTextInput = false) {
         },
         body: JSON.stringify({
           mkDir: true,
-          SAVE_TO: pathToNewFolder.replace('/files', '')
+          PATH_TO_NEW_FOLDER
         })
-      });
+      })
+        .then(res => res.json())
+        .then(console.log)
+        .catch(console.error);
 
-      this.parentNode.parentNode.href = pathToNewFolder;
+      this.parentNode.parentNode.href = PATH_TO_NEW_FOLDER;
       this.remove();
 
       // Check if there are no files in the current directory
