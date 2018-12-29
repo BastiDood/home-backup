@@ -24,7 +24,7 @@ function getUploadsDirectory(pathQuery) {
 
     // Creates the uploads folder if it does not exist
     fs.mkdir(UPLOADS_DIRECTORY, err => {
-      if (err.code !== 'EEXIST') throw err;
+      if (err !== null && err.code !== 'EEXIST') throw err;
       fs.readdir(
         ABSOLUTE_PATH_QUERY,
         {
@@ -35,7 +35,7 @@ function getUploadsDirectory(pathQuery) {
             reject(err);
             return;
           }
-  
+
           // Transform directories and files
           const directories = entries
             .filter(entry => entry.isDirectory())
