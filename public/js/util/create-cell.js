@@ -52,7 +52,10 @@ function createCell(text = '', type, hasTextInput = false) {
         // Check if there are no files in the current directory
         if (noFileParagraphElement) noFileParagraphElement.remove();
         cell.appendChild(folderNameTextNode);
-      } else if (!json.isSuccessful && status === 409) {
+      } else if (
+        !json.isSuccessful
+        && (status === 400 || status === 409)
+      ) {
         this.focus();
         this.select();
       }

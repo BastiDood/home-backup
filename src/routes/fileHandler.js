@@ -70,27 +70,43 @@ router.route('*')
 
       // Check if request is for directory creation
       if (req.body.mkDir) {
-        const { PATH_TO_NEW_FOLDER } = req.body;
+        const PATH_TO_NEW_FOLDER = decodeURIComponent(req.body.PATH_TO_NEW_FOLDER);
         const SAVE_TO = path.relative(
           '/files/',
           PATH_TO_NEW_FOLDER
         );
-        const ENCODED_DESTINATION = path.join(
-          UPLOADS_DIRECTORY,
-          SAVE_TO
-        );
-        const DESTINATION = decodeURIComponent(ENCODED_DESTINATION);
+        const isSafe = !/[\w\d]+(\/[a-z\d\s]+)*/i.test(SAVE_TO);
+        console.log(PATH_TO_NEW_FOLDER);
+        console.log(SAVE_TO);
+        console.log(isSafe);
         
-        fs.mkdir(DESTINATION, err => {
-          if (err === null) res.status(201).json({
-            isSuccessful: true
+        // Check if the file path is safe
+        if (isSafe) {
+          const DESTINATION = path.join(
+            UPLOADS_DIRECTORY,
+            SAVE_TO
+          );
+          fs.mkdir(DESTINATION, err => {
+            if (err === null) {
+              res.status(201).json({
+                isSuccessful: true
+              });
+            } else {
+              res.status(409).json({
+                isSuccessfulL: false,
+                errCode: err.code,
+                errMsg: 'The folder already exists.'
+              });
+            }
           });
-          else res.status(409).json({
-            isSuccessfulL: false,
-            errCode: err.code,
-            errMsg: 'The folder already exists.'
+        } else {
+          res.status(400).json({
+            isSuccessful: false,
+            errMsg: 'Invalid folder name.'
           });
-        });
+        }
+
+        // Stop execution to prevent file upload
         return;
       }
 
@@ -100,7 +116,6 @@ router.route('*')
         if (err) next(err);
         res.redirect(redirectPath);
       });
-    }
-  );
+    });
 
 module.exports = router;
