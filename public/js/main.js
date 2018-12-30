@@ -1,6 +1,7 @@
 // MODULE IMPORTS
-import createCell from './util/create-cell.js';
-import createRow from './util/create-row.js';
+import createCell from '/js/util/create-cell.js';
+import createInput from '/js/util/create-input.js';
+import createRow from '/js/util/create-row.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // <form></form>
@@ -23,19 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const beforeTarget = document.getElementsByClassName('before-target')[0];
 
     // <div> cell with input
-    const cellWithInput = createCell('', 'text', true);
-    const input = cellWithInput.children[0];
+    const input = createInput('New Folder');
+    const cellTextWithInput = createCell('', 'text');
+    cellTextWithInput.appendChild(input);
 
     // Wrapper <div> cells
     const cellText = createCell('Folder', 'text');
     const cellNumber = createCell('', 'number');
+    const cellSize = cellNumber.cloneNode();
+    const cellDate = cellNumber.cloneNode();
 
     // Wrapper <a> row
     const wrapperRow = createRow(
-      cellWithInput,
+      cellTextWithInput,
       cellText,
-      cellNumber.cloneNode(),
-      cellNumber.cloneNode()
+      cellSize,
+      cellDate
     );
 
     // Insert <input> before directories

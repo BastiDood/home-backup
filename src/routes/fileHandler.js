@@ -70,12 +70,12 @@ router.route('*')
 
       // Check if request is for directory creation
       if (req.body.mkDir) {
-        const PATH_TO_NEW_FOLDER = decodeURIComponent(req.body.PATH_TO_NEW_FOLDER);
+        const PATH_TO_NEW_FOLDER = decodeURIComponent(req.body.pathToNewFolder);
         const SAVE_TO = path.relative(
           '/files/',
           PATH_TO_NEW_FOLDER
         );
-        const isSafe = /^[\w\d]+(\/[a-z\d\s]+)*$/i.test(SAVE_TO);
+        const isSafe = /^[\w\d\s]+(\/[a-z\d\s]+)*$/i.test(SAVE_TO);
         
         // Check if the file path is safe
         if (isSafe) {
@@ -87,6 +87,7 @@ router.route('*')
             if (err === null) {
               res.status(201).json({
                 isSuccessful: true,
+                // TODO: Add better implementation and abstraction
                 mtime: fs.lstatSync(DESTINATION).mtime
               });
             } else {
