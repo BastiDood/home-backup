@@ -39,7 +39,7 @@ function createInput(placeholder) {
 
           // Swap element <input> for TextNode
           this.replaceWith(document.createTextNode(`${folderName}/`));
-    
+
           // Check if there are no files in the current directory
           if (noFileParagraphElement) noFileParagraphElement.remove();
         } else if (
