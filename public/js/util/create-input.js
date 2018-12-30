@@ -32,12 +32,10 @@ function createInput(placeholder) {
           wrapperRow.href = PATH_TO_NEW_FOLDER;
           cellDate.appendChild(
             document.createTextNode(
-              Date(
-                json.mtime
-              )
+              new Date(json.mtime).toString()
             )
           );
-    
+
           // Swap element <input> for TextNode
           this.parentElement.appendChild(document.createTextNode(folderName));
           this.remove();

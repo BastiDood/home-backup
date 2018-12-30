@@ -1,21 +1,16 @@
 /**
- * @typedef {Object} CreationSuccess
+ * @typedef {Object} ServerResponse
  * @property {boolean} isSuccessful - Status of
  * directory creation
- * @property {Date} mtime - Last modified time of
+ * @property {string} [mtime] - Last modified time of
  * the directory
- */
-/**
- * @typedef {Object} CreationFailure
- * @property {boolean} isSuccessful - Status of
- * directory creation
  * @property {string} [errCode] - NodeJS error code
- * @property {string} errMsg - Error message
+ * @property {string} [errMsg] - Error message
  */
 /**
  * @typedef {Object} DirectoryCreationResult
  * @property {number} status - Status code of response
- * @property {CreationSuccess|CreationFailure} json - Server response JSON
+ * @property {ServerResponse} json - Server response JSON
  */
 /**
  * Tells the server to create a new directory based
