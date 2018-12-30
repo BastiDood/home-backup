@@ -1,7 +1,7 @@
 // MODULE IMPORTS
-import createCell from '/js/util/create-cell.js';
-import createInput from '/js/util/create-input.js';
-import createRow from '/js/util/create-row.js';
+import createCell from '/js/util/dom/create-cell.js';
+import createInput from '/js/util/dom/create-input.js';
+import createRow from '/js/util/dom/create-row.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // <form></form>
