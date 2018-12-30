@@ -20,10 +20,11 @@ dotenv.config();
  */
 function getServerDetails() {
   const { address } = os.networkInterfaces()['Wi-Fi'][1];
+  const isProduction = process.env.NODE_ENV === 'production';
   const port = Number(process.env.PORT);
-  const isDevelopment = process.env.NODE_ENV === 'development';
 
-  if (isDevelopment) {
+  // Check if development environment
+  if (!isProduction) {
     return {
       HOSTNAME: '127.0.0.1',
       PORT: 80
