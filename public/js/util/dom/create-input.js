@@ -30,7 +30,7 @@ function createInput(placeholder) {
           const cellDate = wrapperRow.children[3];
           const noFileParagraphElement = document.getElementById('no-files');
 
-          wrapperRow.href = PATH_TO_NEW_FOLDER;
+          wrapperRow.href = decodeURIComponent(PATH_TO_NEW_FOLDER);
           cellDate.appendChild(
             document.createTextNode(
               new Date(json.mtime).toString()
@@ -38,8 +38,7 @@ function createInput(placeholder) {
           );
 
           // Swap element <input> for TextNode
-          this.parentElement.appendChild(document.createTextNode(folderName));
-          this.remove();
+          this.replaceWith(document.createTextNode(`${folderName}/`));
     
           // Check if there are no files in the current directory
           if (noFileParagraphElement) noFileParagraphElement.remove();
