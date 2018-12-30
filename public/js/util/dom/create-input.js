@@ -19,15 +19,16 @@ function createInput(placeholder) {
   input.addEventListener('blur', function() {
     const folderName = (this.value === '') ? this.placeholder : this.value;
     const PATH_TO_NEW_FOLDER = encodeURIComponent(window.location.pathname + folderName);
-      
+
     // Send a request to the server to create a new directory
     createDirectory(PATH_TO_NEW_FOLDER)
       .then(({ status, json }) => {
         if (json.isSuccessful && status === 201) {
           // Handle successful folder creation
-          const noFileParagraphElement = document.getElementById('no-files');
-          const wrapperRow = this.parentElement.parentElement;
+          /** @type {HTMLAnchorElement} */
+          const wrapperRow = (this.parentElement.parentElement);
           const cellDate = wrapperRow.children[3];
+          const noFileParagraphElement = document.getElementById('no-files');
 
           wrapperRow.href = PATH_TO_NEW_FOLDER;
           cellDate.appendChild(

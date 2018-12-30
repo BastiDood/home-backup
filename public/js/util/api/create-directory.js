@@ -35,6 +35,7 @@ function createDirectory(endpoint) {
       return res.json()
         .then(json => ({
           status: res.status,
+          /** @type {ServerResponse} */
           json
         }));
     });

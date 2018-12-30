@@ -5,10 +5,12 @@ import createRow from '/js/util/dom/create-row.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // <form></form>
-  const form = document.getElementById('fsControl');
+  /** @type {HTMLFormElement} */
+  const form = (document.getElementById('fsControl'));
 
   // <input type="file" />
-  const filesUpload = document.getElementById('filesUpload');
+  /** @type {HTMLInputElement} */
+  const filesUpload =  (document.getElementById('filesUpload'));
 
   // <label for="filesUpload"></label>
   const newFolderButton = document.getElementById('newFolder');
@@ -30,9 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Wrapper <div> cells
     const cellText = createCell('Folder', 'text');
-    const cellNumber = createCell('', 'number');
-    const cellSize = cellNumber.cloneNode();
-    const cellDate = cellNumber.cloneNode();
+    const cellSize = createCell('', 'number');
+    const cellDate = createCell('', 'number');
 
     // Wrapper <a> row
     const wrapperRow = createRow(
