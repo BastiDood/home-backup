@@ -19,8 +19,8 @@
  * new folder relative to the website root
  * @returns {Promise<DirectoryCreationResult>}
  */
-async function createDirectory(endpoint) {
-  const response = await fetch(endpoint, {
+function createDirectory(endpoint) {
+  return fetch(endpoint, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -30,12 +30,14 @@ async function createDirectory(endpoint) {
       mkDir: true,
       pathToNewFolder: endpoint
     })
-  });
-  const { status } = response;
-  const json = await response.json();
-
-  return { status, json };
-
+  })
+    .then(res => {
+      return res.json()
+        .then(json => ({
+          status: res.status,
+          json
+        }));
+    });
 }
 
 export default createDirectory;

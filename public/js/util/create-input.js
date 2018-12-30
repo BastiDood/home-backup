@@ -28,7 +28,7 @@ function createInput(placeholder) {
           const noFileParagraphElement = document.getElementById('no-files');
           const wrapperRow = this.parentElement.parentElement;
           const cellDate = wrapperRow.children[3];
-    
+
           wrapperRow.href = PATH_TO_NEW_FOLDER;
           cellDate.appendChild(
             document.createTextNode(
