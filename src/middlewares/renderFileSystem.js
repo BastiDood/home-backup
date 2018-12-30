@@ -4,10 +4,10 @@
 const getUploadsDirectory = require('../util/getUploadsDirectory');
 
 /**
- * 
- * @param {Express.Request} req
- * @param {Express.Response} res
- * @param {Function} next - Function to call the next middleware
+ * Helper function for rendering the file system.
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ * @param {import('express').NextFunction} next - Function to call the next middleware
  */
 function renderFileSystem(req, res, next) {
   const pathQuery = req.params[0];

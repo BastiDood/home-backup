@@ -2,9 +2,9 @@
 
 /**
  * Logs all incoming requests.
- * @param {Express.Request} req
- * @param {Express.Response} res
- * @param {Function} next - Next middleware function
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ * @param {import('express').NextFunction} next - Next middleware function
  */
 function logRequests(req, res, next) {
   console.group(`${new Date()}`);
