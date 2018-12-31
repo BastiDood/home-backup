@@ -87,7 +87,7 @@ router.route('*')
               res.status(201).json({
                 isSuccessful: true,
                 // TODO: Add better implementation and abstraction
-                mtime: fs.lstatSync(DESTINATION).mtime
+                mtime: new Date(fs.lstatSync(DESTINATION).mtime).toString()
               });
             } else {
               res.status(409).json({
