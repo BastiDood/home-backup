@@ -16,6 +16,7 @@ const UPLOADS_DIRECTORY = path.resolve(__dirname, '../../public/uploads');
  * @param {string} pathQuery - Relative path as dictated by the URL search parameters
  * @returns {Promise<Array<FileEntry[]>>} An array containing two arrays containing
  * the directory and file objects, respectively
+ * @throws {NodeJS.ErrnoException} Exception when error code is not `'EEXIST'`
  */
 function getUploadsDirectory(pathQuery) {
   return new Promise((resolve, reject) => {

@@ -14,8 +14,8 @@ const getLocalAddresses = require('./getLocalAddresses');
  */
 /**
  * This function returns the details required to initialize the server.
- * @throws Throws an error if the current local IP address on Wi-Fi does not exist.
  * @returns {ServerDetails} An object representation of the hostname and the port.
+ * @throws If the current local IP address on Wi-Fi does not exist.
  */
 function getServerDetails() {
   const isProduction = process.env.NODE_ENV === 'production';

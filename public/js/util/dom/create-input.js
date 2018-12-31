@@ -33,7 +33,7 @@ function createInput(placeholder) {
           wrapperRow.href = decodeURIComponent(PATH_TO_NEW_FOLDER);
           cellDate.appendChild(
             document.createTextNode(
-              new Date(json.mtime).toString()
+              json.mtime
             )
           );
 
