@@ -1,7 +1,7 @@
 /**
  * Creates a single cell of data.
  * @param {string} [text=''] - Text to be inserted as a text node
- * @param {string} type - CSS class to apply (either `text`
+ * @param {'text'|'number'} type - CSS class to apply (either `text`
  * or `number` only)
  * @returns {HTMLDivElement} The resulting cell element
  */
