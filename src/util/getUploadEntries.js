@@ -7,8 +7,11 @@ const path = require('path');
 // MODULE IMPORTS
 const FileEntry = require('../data-types/FileEntry');
 
+// MODULE IMPORTS
+const getUploadsDirectory = require('../util/getUploadsDirectory');
+
 // Global Constants
-const UPLOADS_DIRECTORY = path.resolve(__dirname, '../../public/uploads');
+const UPLOADS_DIRECTORY = getUploadsDirectory();
 
 /**
  * Given the relative path from the URL search parameters, this function gets the

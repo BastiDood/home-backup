@@ -13,8 +13,11 @@ const multer = require('multer');
 // MIDDLEWARES
 const renderFileSystem = require('../middlewares/renderFileSystem');
 
+// MODULE IMPORTS
+const getUploadsDirectory = require('../util/getUploadsDirectory');
+
 // Global Constants
-const UPLOADS_DIRECTORY = path.resolve(__dirname, '../../public/uploads');
+const UPLOADS_DIRECTORY = getUploadsDirectory();
 
 // Body Parser Configuration
 const jsonParser = bodyParser.json();
