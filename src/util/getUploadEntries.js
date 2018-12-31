@@ -18,7 +18,7 @@ const UPLOADS_DIRECTORY = path.resolve(__dirname, '../../public/uploads');
  * the directory and file objects, respectively
  * @throws {NodeJS.ErrnoException} Exception when error code is not `'EEXIST'`
  */
-function getUploadsDirectory(pathQuery) {
+function getUploadEntries(pathQuery) {
   return new Promise((resolve, reject) => {
     const ABSOLUTE_PATH_QUERY = path.join(UPLOADS_DIRECTORY, pathQuery);
 
@@ -57,4 +57,4 @@ function getUploadsDirectory(pathQuery) {
   });
 }
 
-module.exports = getUploadsDirectory;
+module.exports = getUploadEntries;

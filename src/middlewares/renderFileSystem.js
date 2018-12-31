@@ -1,7 +1,7 @@
 'use strict';
 
 // MODULE IMPORTS
-const getUploadsDirectory = require('../util/getUploadsDirectory');
+const getUploadEntries = require('../util/getUploadEntries');
 
 /**
  * Helper function for rendering the file system.
@@ -12,7 +12,7 @@ const getUploadsDirectory = require('../util/getUploadsDirectory');
 function renderFileSystem(req, res, next) {
   const pathQuery = req.params[0];
   const isRoot = pathQuery === '/';
-  getUploadsDirectory(pathQuery)
+  getUploadEntries(pathQuery)
     .then(([ directories, files ]) => {
       res.render('files', {
         pathQuery,
