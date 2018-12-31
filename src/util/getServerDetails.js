@@ -29,14 +29,11 @@ function getServerDetails() {
   }
   
   // Get production local address
-  const port = Number(process.env.PORT);
+  const PORT = Number(process.env.PORT);
   const localAddresses = getLocalAddresses();
-  const [ address ] = localAddresses;
+  const [ HOSTNAME ] = localAddresses;
 
-  return {
-    HOSTNAME: address,
-    PORT: port
-  };
+  return { HOSTNAME, PORT };
 }
 
 module.exports = getServerDetails;
