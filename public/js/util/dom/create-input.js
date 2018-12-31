@@ -18,7 +18,7 @@ function createInput(placeholder) {
   });
   input.addEventListener('blur', function() {
     const folderName = (this.value === '') ? this.placeholder : this.value;
-    const PATH_TO_NEW_FOLDER = encodeURIComponent(window.location.pathname + folderName);
+    const PATH_TO_NEW_FOLDER = window.location.pathname + encodeURIComponent(folderName);
 
     // Send a request to the server to create a new directory
     createDirectory(PATH_TO_NEW_FOLDER)
