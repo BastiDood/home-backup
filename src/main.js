@@ -15,6 +15,7 @@ const logRequests = require('./middlewares/logRequests');
 
 // UTILITY FUNCTIONS
 const getServerDetails = require('./util/getServerDetails');
+const getUploadsDirectory = require('./util/getUploadsDirectory');
 
 // Global constants
 const { HOSTNAME, PORT } = getServerDetails();
@@ -82,3 +83,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, HOSTNAME);
 console.log(`Running server at: http://${HOSTNAME}:${PORT}`);
+console.log(`Uploads directory at: ${getUploadsDirectory()}`);
