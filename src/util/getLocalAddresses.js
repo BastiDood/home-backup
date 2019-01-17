@@ -15,8 +15,7 @@ function getLocalAddresses() {
   const localAddresses = Object.values(networkInterfaces)
     .map(ifaces =>
       ifaces
-        .filter(iface => iface.family === 'IPv4')
-        .filter(iface => !iface.internal)
+        .filter(iface => (iface.family === 'IPv4' && !iface.internal))
         .map(iface => iface.address)
     )
     .reduce((prev, curr) => {
