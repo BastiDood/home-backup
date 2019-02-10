@@ -20,6 +20,9 @@ function createInput(placeholder) {
     const folderName = (this.value === '') ? this.placeholder : this.value;
     const PATH_TO_NEW_FOLDER = window.location.pathname + encodeURIComponent(folderName);
 
+    // Reset `invalid` class
+    this.classList.remove('invalid');
+
     // Send a request to the server to create a new directory
     createDirectory(PATH_TO_NEW_FOLDER)
       .then(({ status, json }) => {
@@ -30,7 +33,10 @@ function createInput(placeholder) {
           const cellDate = wrapperRow.children[3];
           const noFileParagraphElement = document.getElementById('no-files');
 
+          // Add `href` to file entry
           wrapperRow.href = decodeURIComponent(PATH_TO_NEW_FOLDER);
+          
+          // Include date in appropriate column
           cellDate.appendChild(
             document.createTextNode(
               json.mtime
@@ -46,8 +52,12 @@ function createInput(placeholder) {
           !json.isSuccessful
             && (status === 400 || status === 409)
         ) {
+          // Put focus on `<input>` if bad input
           this.focus();
           this.select();
+
+          // Render as invalid
+          this.classList.add('invalid');
         }
       });
   });

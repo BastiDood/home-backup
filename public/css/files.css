@@ -49,15 +49,25 @@ label {
 input[type=text] {
   padding: 0.5rem;
   border: 0;
+  outline: 0.25rem solid initial;
   width: 100%;
   background-color: var(--main-bg-color);
+
   font-family: var(--text-font);
   font-size: 1.15rem;
   color: var(--text-color);
+
+  transition:
+    outline var(--transition-time) ease-in-out,
+    background-color var(--transition-time) ease-in-out;
 }
 input[type=file] {
   display: none;
 }
+input[type=text].invalid {
+  outline: 0.25rem solid #f00;
+  background-color: rgba(255, 0, 0, 0.25);
+  }
 
 /* Alignment Styles */
 .text {
