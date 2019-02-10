@@ -17,7 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Submit the file as soon as the user selects
   filesUpload.addEventListener('change', function() {
-    if (this.files.length) form.submit();
+    const files = Array.from(this.files);
+    const totalSize = files
+      .reduce((prev, curr) => prev + curr.size, 0);
+    if (files.length && totalSize <= 1e9) form.submit();
+    else {
+      window.alert('File too large.');
+      form.reset();
+    }
   });
 
   // Create a new folder on click

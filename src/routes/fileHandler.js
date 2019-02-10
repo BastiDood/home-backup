@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
   /**
    * The required callback from Multer.
    * @callback destCb
-   * @param {Error | null} err - The Error object
+   * @param {Error|null} err - The Error object
    * @param {string} destination - Path to the directory for uploading
    */
   /**
@@ -52,7 +52,7 @@ const storage = multer.diskStorage({
 });
 
 // Initialize Uploader
-const upload = multer({ storage }).array('filesUpload');
+const upload = multer({ storage, limits: { fileSize: 1e6 } }).array('filesUpload');
 
 // Intercept static files
 router.use(express.static(
