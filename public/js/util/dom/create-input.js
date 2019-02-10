@@ -17,22 +17,35 @@ function createInput(placeholder) {
     ) this.blur();
   });
   input.addEventListener('blur', function() {
+    // Helper string
+    const invalid = 'invalid';
     const folderName = (this.value === '') ? this.placeholder : this.value;
     const PATH_TO_NEW_FOLDER = window.location.pathname + encodeURIComponent(folderName);
 
+    // DOM structure
+    /** @type {HTMLDivElement} */
+    const inputWrapper = (this.parentElement);
+    /** @type {HTMLDivElement} */
+    const wrapperCell = (inputWrapper.parentElement);
+    /** @type {HTMLAnchorElement} */
+    const wrapperRow = (wrapperCell.parentElement);
+    /** @type {HTMLDivElement} */
+    const cellDate = (wrapperRow.children[3]);
+    /** @type {HTMLParagraphElement} */
+    const noFileParagraphElement = (document.getElementById('no-files'));
+
     // Reset `invalid` class
-    this.classList.remove('invalid');
+    this.classList.remove(invalid);
+    inputWrapper.classList.remove(invalid);
 
     // Send a request to the server to create a new directory
     createDirectory(PATH_TO_NEW_FOLDER)
       .then(({ status, json }) => {
         if (json.isSuccessful && status === 201) {
-          // Handle successful folder creation
-          /** @type {HTMLAnchorElement} */
-          const wrapperRow = (this.parentElement.parentElement);
-          const cellDate = wrapperRow.children[3];
-          const noFileParagraphElement = document.getElementById('no-files');
+          // Check if there are no files in the current directory
+          if (noFileParagraphElement) noFileParagraphElement.remove();
 
+          // Handle successful folder creation
           // Add `href` to file entry
           wrapperRow.href = decodeURIComponent(PATH_TO_NEW_FOLDER);
           
@@ -43,21 +56,19 @@ function createInput(placeholder) {
             )
           );
 
-          // Swap element <input> for TextNode
-          this.replaceWith(document.createTextNode(`${folderName}/`));
-
-          // Check if there are no files in the current directory
-          if (noFileParagraphElement) noFileParagraphElement.remove();
+          // Swap element `inputWrapper` for TextNode
+          inputWrapper.replaceWith(document.createTextNode(`${folderName}/`));
         } else if (
           !json.isSuccessful
-            && (status === 400 || status === 409)
+          && (status === 400 || status === 409)
         ) {
           // Put focus on `<input>` if bad input
           this.focus();
           this.select();
 
           // Render as invalid
-          this.classList.add('invalid');
+          this.classList.add(invalid);
+          inputWrapper.classList.add(invalid);
         }
       });
   });
