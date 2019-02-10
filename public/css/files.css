@@ -49,7 +49,7 @@ label {
 input[type=text] {
   padding: 0.5rem;
   border: 0;
-  outline: 0.25rem solid initial;
+  outline: 0.25rem solid var(--main-theme-color);
   width: 100%;
   background-color: var(--main-bg-color);
 
@@ -67,7 +67,7 @@ input[type=file] {
 input[type=text].invalid {
   outline: 0.25rem solid #f00;
   background-color: rgba(255, 0, 0, 0.25);
-  }
+}
 
 /* Alignment Styles */
 .text {
