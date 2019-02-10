@@ -4,6 +4,7 @@
     <title><%= pathQuery; %></title>
     <%- include('partials/meta'); %>
     <link rel="stylesheet" href="/css/files.css">
+    <link rel="stylesheet" href="/css/popup.css">
     <!-- Scripts -->
     <script type="module" src="/js/main.js" defer="defer"></script>
   </head>
@@ -16,5 +17,6 @@
       <!-- List of Directories and Files -->
       <%- include('partials/fs/table') %>
     </main>
+    <div id="popup"></div>
   </body>
 </html>

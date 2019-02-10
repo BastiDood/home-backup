@@ -19,23 +19,6 @@
   font-size: 1.75rem;
   text-decoration: underline;
 }
-div.error {
-  position: relative;
-}
-div.error::before {
-  content: 'The folder name is invalid. Only use digits and characters from the alphabet.';
-  position: absolute;
-  left: 50%;
-  bottom: 125%;
-  transform: translateX(-50%);
-  display: block;
-  padding: 0.5rem;
-  border: 0.25rem solid #f00;
-  width: 75%;
-  background-color: rgba(255, 0, 0, 0.25);
-  box-shadow: -0.25rem 0.25rem 0.1rem #222;
-  text-align: center;
-}
 
 /* Hoverable Elements */
 .hoverable {

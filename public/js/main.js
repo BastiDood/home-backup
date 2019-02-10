@@ -32,12 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableTarget = document.getElementById('table-target');
     const beforeTarget = document.getElementsByClassName('before-target')[0];
 
-    // `<div>` cell with `<div>` wrapper for input
-    const inputWrapper = document.createElement('div');
+    // `<div>` cell with `<input>`
     const input = createInput('New Folder');
     const cellTextWithInput = createCell('', 'text');
-    inputWrapper.appendChild(input);
-    cellTextWithInput.appendChild(inputWrapper);
+    cellTextWithInput.appendChild(input);
 
     // Wrapper <div> cells
     const cellText = createCell('Folder', 'text');

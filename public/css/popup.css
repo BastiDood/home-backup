@@ -1,0 +1,32 @@
+#popup {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+
+  padding: 0.5rem;
+  width: 75%;
+  box-shadow: 0 0 0.5rem 0.25rem #222;
+
+  font-family: var(--text-font);
+  font-size: 1.25rem;
+  text-align: center;
+  color: #fff;
+  transition: opacity var(--transition-time) ease-in-out;
+}
+.visible#popup {
+  opacity: 1;
+}
+.info#popup {
+  border: 0.25rem solid #00f;
+  background-color: rgba(0, 0, 255, 0.25);
+}
+.warning#popup {
+  border: 0.25rem solid #ff0;
+  background-color: rgba(255, 255, 0, 0.25);
+}
+.error#popup {
+  border: 0.25rem solid #f00;
+  background-color: rgba(255, 0, 0, 0.25);
+}

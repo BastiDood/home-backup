@@ -22,19 +22,19 @@ function createInput(placeholder) {
 
     // DOM structure
     /** @type {HTMLDivElement} */
-    const inputWrapper = (this.parentElement);
-    /** @type {HTMLDivElement} */
-    const wrapperCell = (inputWrapper.parentElement);
+    const wrapperCell = (this.parentElement);
     /** @type {HTMLAnchorElement} */
     const wrapperRow = (wrapperCell.parentElement);
     /** @type {HTMLDivElement} */
     const cellDate = (wrapperRow.children[3]);
     /** @type {HTMLParagraphElement} */
     const noFileParagraphElement = (document.getElementById('no-files'));
+    /** @type {HTMLDivElement} */
+    const popup = (document.getElementById('popup'));
 
     // Reset `invalid` class
     this.classList.remove('invalid');
-    inputWrapper.classList.remove('error');
+    popup.classList.remove('visible');
 
     // Send a request to the server to create a new directory
     createDirectory(PATH_TO_NEW_FOLDER)
@@ -54,8 +54,8 @@ function createInput(placeholder) {
             )
           );
 
-          // Swap element `inputWrapper` for TextNode
-          inputWrapper.replaceWith(document.createTextNode(`${folderName}/`));
+          // Swap `<input>` for TextNode
+          this.replaceWith(document.createTextNode(`${folderName}/`));
         } else if (
           !json.isSuccessful
           && (status === 400 || status === 409)
@@ -66,7 +66,8 @@ function createInput(placeholder) {
 
           // Render as invalid
           this.classList.add('invalid');
-          inputWrapper.classList.add('error');
+          popup.classList.add('visible', 'error');
+          popup.textContent = 'Invalid folder name.';
         }
       });
   });
