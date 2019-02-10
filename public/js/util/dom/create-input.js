@@ -17,8 +17,6 @@ function createInput(placeholder) {
     ) this.blur();
   });
   input.addEventListener('blur', function() {
-    // Helper string
-    const invalid = 'invalid';
     const folderName = (this.value === '') ? this.placeholder : this.value;
     const PATH_TO_NEW_FOLDER = window.location.pathname + encodeURIComponent(folderName);
 
@@ -35,8 +33,8 @@ function createInput(placeholder) {
     const noFileParagraphElement = (document.getElementById('no-files'));
 
     // Reset `invalid` class
-    this.classList.remove(invalid);
-    inputWrapper.classList.remove(invalid);
+    this.classList.remove('invalid');
+    inputWrapper.classList.remove('error');
 
     // Send a request to the server to create a new directory
     createDirectory(PATH_TO_NEW_FOLDER)
@@ -67,8 +65,8 @@ function createInput(placeholder) {
           this.select();
 
           // Render as invalid
-          this.classList.add(invalid);
-          inputWrapper.classList.add(invalid);
+          this.classList.add('invalid');
+          inputWrapper.classList.add('error');
         }
       });
   });

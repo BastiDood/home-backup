@@ -19,10 +19,10 @@
   font-size: 1.75rem;
   text-decoration: underline;
 }
-div.invalid {
+div.error {
   position: relative;
 }
-div.invalid::before {
+div.error::before {
   content: 'The folder name is invalid. Only use digits and characters from the alphabet.';
   position: absolute;
   left: 50%;
