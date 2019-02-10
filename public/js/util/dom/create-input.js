@@ -66,7 +66,10 @@ function createInput(placeholder) {
           // Render as invalid
           this.classList.add('invalid');
           popup
-            .setMode('error', 'Invalid folder name.')
+            .setMode(
+              'error',
+              'Invalid folder name. Only use digits and characters from the alphabet.'
+            )
             .setVisibility(true);
         }
       });
