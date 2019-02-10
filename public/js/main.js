@@ -2,6 +2,7 @@
 import createCell from '/js/util/dom/create-cell.js';
 import createInput from '/js/util/dom/create-input.js';
 import createRow from '/js/util/dom/create-row.js';
+import popup from '/js/util/dom/popup.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // <form></form>
@@ -20,10 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const files = Array.from(this.files);
     const totalSize = files
       .reduce((prev, curr) => prev + curr.size, 0);
+
+    // Reset popup
+    popup.setVisibility(false);
+
     if (files.length && totalSize <= 1e9) form.submit();
     else {
-      window.alert('File too large.');
       form.reset();
+      popup
+        .setMode(
+          'error',
+          'The total file size is too large. Consider uploading less than 1GB at a time.'
+        )
+        .setVisibility(true);
     }
   });
 

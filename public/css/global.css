@@ -22,6 +22,7 @@
   --text-font: Roboto;
   --text-color: #ddd;
   --transition-time: 150ms;
+  --popup-timeout: 5s;
 }
 
 /* Global Styles */

@@ -1,3 +1,10 @@
+/* Keyframes */
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Popup Styles */
 #popup {
   opacity: 0;
   position: absolute;
@@ -20,6 +27,7 @@
 }
 .visible#popup {
   opacity: 1;
+  animation: fadeOut 1s ease-in-out var(--popup-timeout) forwards;
 }
 .info#popup {
   border: 0.25rem solid #00f;
