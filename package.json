@@ -9,7 +9,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "node .",
-    "test": "jest"
+    "test": "jest --watchAll"
   },
   "author": "Basti Ortiz <ortizbasti16@gmail.com>",
   "license": "GPL-3.0-or-later",
