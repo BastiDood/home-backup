@@ -1,4 +1,5 @@
 import createDirectory from '/js/util/api/create-directory.js';
+import popup from '/js/util/dom/popup.js';
 
 /**
  * Creates an `<input>` tag.
@@ -29,12 +30,10 @@ function createInput(placeholder) {
     const cellDate = (wrapperRow.children[3]);
     /** @type {HTMLParagraphElement} */
     const noFileParagraphElement = (document.getElementById('no-files'));
-    /** @type {HTMLDivElement} */
-    const popup = (document.getElementById('popup'));
 
     // Reset `invalid` class
     this.classList.remove('invalid');
-    popup.classList.remove('visible');
+    popup.setVisibility(false);
 
     // Send a request to the server to create a new directory
     createDirectory(PATH_TO_NEW_FOLDER)
@@ -66,8 +65,9 @@ function createInput(placeholder) {
 
           // Render as invalid
           this.classList.add('invalid');
-          popup.classList.add('visible', 'error');
-          popup.textContent = 'Invalid folder name.';
+          popup
+            .setMode('error', 'Invalid folder name.')
+            .setVisibility(true);
         }
       });
   });

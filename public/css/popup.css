@@ -13,7 +13,10 @@
   font-size: 1.25rem;
   text-align: center;
   color: #fff;
-  transition: opacity var(--transition-time) ease-in-out;
+  transition:
+    opacity var(--transition-time) ease-in-out,
+    border var(--transition-time) ease-in-out,
+    background-color var(--transition-time) ease-in-out;
 }
 .visible#popup {
   opacity: 1;
