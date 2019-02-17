@@ -52,7 +52,7 @@ const storage = multer.diskStorage({
 });
 
 // Initialize Uploader
-const upload = multer({ storage, limits: { fileSize: 1e6 } }).array('filesUpload');
+const upload = multer({ storage, limits: { fileSize: 1e9 } }).array('filesUpload');
 
 // Intercept static files
 router.use(express.static(
