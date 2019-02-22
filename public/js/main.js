@@ -1,8 +1,9 @@
-// MODULE IMPORTS
+// UTILITY FUNCTIONS
 import createCell from '/js/util/dom/create-cell.js';
 import createInput from '/js/util/dom/create-input.js';
 import createRow from '/js/util/dom/create-row.js';
 import popup from '/js/util/dom/popup.js';
+import validateFileSizes from '/js/util/validation/validate-file-sizes.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // <form></form>
@@ -18,14 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Submit the file as soon as the user selects
   filesUpload.addEventListener('change', function() {
-    const files = Array.from(this.files);
-    const totalSize = files
-      .reduce((prev, curr) => prev + curr.size, 0);
+    const hasValidFileSizes = validateFileSizes(
+      Array.from(this.files)
+    );
 
     // Reset popup
     popup.setVisibility(false);
 
-    if (files.length && totalSize <= 1e9) form.submit();
+    if (hasValidFileSizes) form.submit();
     else {
       form.reset();
       popup
