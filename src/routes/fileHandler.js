@@ -18,6 +18,7 @@ const getUploadsDirectory = require('../util/getUploadsDirectory');
 
 // Global Constants
 const UPLOADS_DIRECTORY = getUploadsDirectory();
+const MAX_UPLOAD_SIZE = Number(require('dotenv').config().parsed.MAX_UPLOAD_SIZE);
 
 // Body Parser Configuration
 const jsonParser = bodyParser.json();
@@ -52,14 +53,12 @@ const storage = multer.diskStorage({
 });
 
 // Initialize Uploader
-const upload = multer({ storage, limits: { fileSize: 1e9 } }).array('filesUpload');
+const upload = multer({ storage, limits: { fileSize: MAX_UPLOAD_SIZE } }).array('filesUpload');
 
 // Intercept static files
 router.use(express.static(
   UPLOADS_DIRECTORY,
-  {
-    dotfiles: 'deny'
-  }
+  { dotfiles: 'deny' }
 ));
 
 // Intercept all routes from /files/*

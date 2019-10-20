@@ -1,5 +1,5 @@
 // Maximum file size of array
-const maxSize = 1e9;
+const MAX_UPLOAD_SIZE = Number(require('dotenv').config().parsed.MAX_UPLOAD_SIZE);
 
 /**
  * Checks if an array of files has a total size
@@ -11,7 +11,7 @@ function validateFileSize(files) {
   const totalSize = files
     .reduce((prev, curr) => prev + curr.size, 0);
 
-  if (files.length && totalSize <= maxSize) return true;
+  if (files.length && totalSize <= MAX_UPLOAD_SIZE) return true;
   else return false;
 }
 
