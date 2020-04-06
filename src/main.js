@@ -49,15 +49,11 @@ app.use(helmet.referrerPolicy({
 // Load static assets
 app.use(express.static(
   path.join(__dirname, '../public'),
-  {
-    dotfiles: 'deny'
-  }
+  { dotfiles: 'deny' }
 ));
 
 // Serve home page
-app.get('/', (req, res) => {
-  res.render('index');
-});
+app.get('/', (req, res) => res.render('index'));
 
 // Serve file system
 app.use('/files', fileHandler);
