@@ -3,6 +3,7 @@
 // DEPENDENCIES
 const express = require('express');
 const helmet = require('helmet');
+const noCache = require('nocache');
 
 // NATIVE IMPORTS
 const path = require('path');
@@ -40,7 +41,7 @@ app.use(helmet.contentSecurityPolicy({
     frameAncestors: ['\'none\'']
   }
 }));
-app.use(helmet.noCache());
+app.use(noCache());
 app.use(helmet.referrerPolicy({
   policy: 'no-referrer'
 }));
